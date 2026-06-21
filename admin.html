@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin | Rainha das Lupas</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- ===================== TELA DE LOGIN ===================== -->
+<div class="login-tela" id="loginTela">
+  <form class="login-card" id="loginForm">
+    <p class="eyebrow">Painel administrativo</p>
+    <h1>Rainha das Lupas</h1>
+    <p class="login-sub">Entre com o e-mail e senha cadastrados para gerenciar os produtos do site.</p>
+
+    <label class="campo">
+      <span>E-mail</span>
+      <input type="email" id="loginEmail" required autocomplete="username">
+    </label>
+    <label class="campo">
+      <span>Senha</span>
+      <input type="password" id="loginSenha" required autocomplete="current-password">
+    </label>
+
+    <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+    <p class="login-erro" id="loginErro"></p>
+  </form>
+</div>
+
+<!-- ===================== PAINEL (após login) ===================== -->
+<div class="admin-painel" id="adminPainel" hidden>
+
+  <header class="admin-header">
+    <div class="wrap admin-header-inner">
+      <a href="#" class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="13" cy="13" r="9" stroke="#6B1E2E" stroke-width="2.4"/>
+          <line x1="19.5" y1="19.5" x2="27" y2="27" stroke="#B68D40" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        Painel · Rainha das Lupas
+      </a>
+      <div class="admin-header-acoes">
+        <span class="admin-usuario" id="adminUsuario"></span>
+        <button class="btn btn-ghost" id="btnSair">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap admin-main">
+
+    <!-- ===================== FORMULÁRIO ===================== -->
+    <section class="admin-form-card">
+      <p class="eyebrow" id="formModo">Novo produto</p>
+      <h2>Cadastrar / editar produto</h2>
+
+      <form id="produtoForm">
+        <div class="form-linha">
+          <label class="campo">
+            <span>Nome do produto</span>
+            <input type="text" id="campoNome" required placeholder="Ex: Aviador Imperial">
+          </label>
+          <label class="campo campo-curto">
+            <span>Categoria</span>
+            <select id="campoCategoria" required>
+              <option value="sol">Óculos de Sol</option>
+              <option value="grau">Óculos de Grau</option>
+              <option value="lupa">Lupa de Aumento</option>
+              <option value="acessorio">Acessório</option>
+            </select>
+          </label>
+          <label class="campo campo-curto">
+            <span>Preço (R$)</span>
+            <input type="number" id="campoPreco" step="0.01" min="0" required placeholder="189.90">
+          </label>
+        </div>
+
+        <label class="campo">
+          <span>Descrição curta</span>
+          <textarea id="campoDescricao" rows="2" placeholder="Frase curta que aparece no card do produto"></textarea>
+        </label>
+
+        <div class="campo">
+          <span>Fotos do produto (link de cada imagem, um ângulo por foto)</span>
+          <p class="campo-ajuda">A primeira foto vira a capa do card. Cole o link direto da imagem (ex: hospedada no ImgBB, Cloudinary, Google Drive público, etc).</p>
+          <div id="listaImagens" class="lista-imagens"></div>
+          <button type="button" class="btn btn-ghost btn-pequeno" id="btnAddImagem">+ Adicionar foto</button>
+        </div>
+
+        <label class="campo-checkbox">
+          <input type="checkbox" id="campoAtivo" checked>
+          <span>Mostrar este produto no site</span>
+        </label>
+
+        <div class="form-acoes">
+          <button type="submit" class="btn btn-primary" id="btnSalvar">Salvar produto</button>
+          <button type="button" class="btn btn-ghost" id="btnCancelarEdicao" hidden>Cancelar edição</button>
+        </div>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </section>
+
+    <!-- ===================== LISTA DE PRODUTOS ===================== -->
+    <section class="admin-lista-card">
+      <div class="admin-lista-head">
+        <h2>Produtos cadastrados</h2>
+        <span class="admin-contador" id="contadorProdutos"></span>
+      </div>
+      <p class="status-msg show" id="listaStatus">Carregando produtos...</p>
+      <div class="lista-produtos" id="listaProdutos"></div>
+    </section>
+
+  </main>
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

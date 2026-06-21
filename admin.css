@@ -1,0 +1,115 @@
+/* =======================================================
+   PAINEL ADMIN — reaproveita os tokens definidos em style.css
+======================================================= */
+.admin-body{ background: var(--parchment); min-height: 100vh; }
+
+/* ---------- tela de login ---------- */
+.login-tela{
+  min-height: 100vh; display:flex; align-items:center; justify-content:center;
+  padding: 24px;
+}
+.login-card{
+  background: var(--cream); border:1px solid var(--line); border-radius: 18px;
+  box-shadow: var(--shadow); padding: 36px 32px; max-width: 380px; width:100%;
+}
+.login-card h1{
+  font-family: var(--display); font-size: 1.7rem; margin: 6px 0 10px;
+}
+.login-sub{ font-size:.92rem; color: rgba(43,27,18,.68); margin: 0 0 22px; }
+.login-erro{ color: var(--burgundy); font-size:.85rem; margin: 12px 0 0; min-height: 1.2em; }
+
+/* ---------- campos de formulário (compartilhado) ---------- */
+.campo{ display:flex; flex-direction:column; gap:6px; margin-bottom: 16px; }
+.campo span{ font-family: var(--mono); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color: var(--ink); opacity:.7; }
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="password"],
+.campo input[type="number"],
+.campo input[type="url"],
+.campo select,
+.campo textarea{
+  border: 1.5px solid var(--line); border-radius: 10px; background: var(--parchment);
+  padding: 11px 14px; font-family: var(--body); font-size: .95rem; color: var(--ink);
+  outline: none; transition: border-color .15s ease;
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus{ border-color: var(--brass); }
+.campo textarea{ resize: vertical; }
+.campo-ajuda{ font-size:.8rem; color: rgba(43,27,18,.55); margin: -2px 0 8px; }
+
+.campo-checkbox{
+  display:flex; align-items:center; gap:10px; margin: 4px 0 22px; font-size:.92rem;
+}
+.campo-checkbox input{ width:18px; height:18px; accent-color: var(--burgundy); }
+
+.btn-full{ width:100%; justify-content:center; }
+.btn-pequeno{ padding: 7px 14px; font-size:.82rem; }
+
+/* ---------- header do painel ---------- */
+.admin-header{
+  background: rgba(242,232,213,.95); border-bottom: 1px solid var(--line);
+  position: sticky; top:0; z-index: 20;
+}
+.admin-header-inner{
+  display:flex; align-items:center; justify-content:space-between; padding: 16px 24px;
+}
+.admin-header-acoes{ display:flex; align-items:center; gap:14px; }
+.admin-usuario{ font-family: var(--mono); font-size:.78rem; color: rgba(43,27,18,.6); }
+
+.admin-main{ padding: 36px 24px 70px; display:flex; flex-direction:column; gap:32px; }
+
+/* ---------- card do formulário ---------- */
+.admin-form-card, .admin-lista-card{
+  background: var(--cream); border:1px solid var(--line); border-radius: 16px;
+  padding: 26px 24px; box-shadow: 0 1px 0 var(--line);
+}
+.admin-form-card h2, .admin-lista-card h2{
+  font-family: var(--display); font-size: 1.4rem; margin: 4px 0 18px;
+}
+
+.form-linha{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
+@media (max-width: 640px){ .form-linha{ grid-template-columns: 1fr; } }
+
+.lista-imagens{ display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
+.linha-imagem{ display:flex; gap:8px; align-items:center; }
+.linha-imagem input{ flex:1; }
+.linha-imagem .btn-remover-img{
+  border:none; background:transparent; color: var(--burgundy); font-size:1.2rem;
+  width:32px; height:32px; border-radius:50%; flex-shrink:0;
+}
+.linha-imagem .btn-remover-img:hover{ background: rgba(107,30,46,.1); }
+.linha-imagem img.preview{
+  width:38px; height:38px; object-fit:cover; border-radius:8px; flex-shrink:0;
+  border: 1px solid var(--line);
+}
+
+.form-acoes{ display:flex; gap:12px; align-items:center; margin-top: 6px; }
+.form-msg{ font-size:.85rem; margin: 12px 0 0; min-height: 1.2em; }
+.form-msg.sucesso{ color: #2f6b3a; }
+.form-msg.erro{ color: var(--burgundy); }
+
+/* ---------- lista de produtos ---------- */
+.admin-lista-head{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+.admin-contador{ font-family: var(--mono); font-size:.78rem; color: rgba(43,27,18,.55); }
+
+.lista-produtos{ display:flex; flex-direction:column; gap:10px; margin-top: 8px; }
+.item-produto{
+  display:flex; align-items:center; gap:14px;
+  border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px;
+  background: var(--parchment);
+}
+.item-produto .thumb{
+  width:52px; height:52px; border-radius:9px; object-fit:cover; flex-shrink:0;
+  background: var(--cream); border: 1px solid var(--line);
+}
+.item-info{ flex:1; min-width:0; }
+.item-info .nome{ font-weight:600; font-size:.95rem; }
+.item-info .meta{ font-family: var(--mono); font-size:.74rem; color: rgba(43,27,18,.55); display:flex; gap:10px; flex-wrap:wrap; }
+.item-info .meta .inativo{ color: var(--burgundy); }
+.item-acoes{ display:flex; gap:8px; flex-shrink:0; }
+.item-acoes button{
+  border: 1.5px solid var(--ink); background:transparent; color: var(--ink);
+  border-radius: 999px; padding: 6px 13px; font-size:.78rem; font-weight:600;
+}
+.item-acoes button:hover{ background: var(--ink); color: var(--cream); }
+.item-acoes .btn-excluir{ border-color: var(--burgundy); color: var(--burgundy); }
+.item-acoes .btn-excluir:hover{ background: var(--burgundy); color: var(--cream); }

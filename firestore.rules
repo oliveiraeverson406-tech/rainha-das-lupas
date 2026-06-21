@@ -1,0 +1,14 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Coleção "produtos":
+    // - Qualquer pessoa pode LER (necessário para o site carregar o catálogo)
+    // - Só usuário autenticado (você, logado no painel admin) pode CRIAR, EDITAR ou EXCLUIR
+    match /produtos/{produtoId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

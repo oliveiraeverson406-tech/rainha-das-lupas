@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rainha das Lupas | Ótica</title>
+<meta name="description" content="Óculos de sol, óculos de grau, lupas de aumento e acessórios. Enxergue como uma rainha.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#topo" class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="13" cy="13" r="9" stroke="#6B1E2E" stroke-width="2.4"/>
+        <line x1="19.5" y1="19.5" x2="27" y2="27" stroke="#B68D40" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      Rainha das Lupas
+    </a>
+    <ul class="nav-links">
+      <li><a href="#colecao">Coleção</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="btn btn-primary" id="zap-header" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<main id="topo">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow hero-fade">Ótica · óculos e lupas de aumento</p>
+        <h1 class="hero-fade delay">Enxergue como uma <em>rainha</em>.</h1>
+        <p class="hero-fade delay">Óculos de sol, óculos de grau, lupas de aumento e acessórios — selecionados com o mesmo cuidado de um joalheiro escolhendo pedras.</p>
+        <div class="hero-actions hero-fade delay">
+          <a href="#colecao" class="btn btn-primary">Ver coleção</a>
+          <a href="#contato" class="btn btn-ghost">Tirar dúvidas</a>
+        </div>
+      </div>
+      <div class="lens-stage" id="lensStage" aria-hidden="true">
+        <div class="lens" id="lens"></div>
+        <span class="stage-label">passe o mouse — a lupa é sua</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="colecao" id="colecao">
+    <div class="wrap">
+      <div class="colecao-head">
+        <div>
+          <p class="eyebrow">Catálogo</p>
+          <h2>Nossa coleção</h2>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="#2B1B12" stroke-width="2"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#2B1B12" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="text" id="busca" placeholder="Buscar produto..." aria-label="Buscar produto">
+        </div>
+        <div class="pills" id="pills" role="group" aria-label="Filtrar por categoria">
+          <button class="pill active" data-cat="todos">Todos</button>
+          <button class="pill" data-cat="sol">Óculos de Sol</button>
+          <button class="pill" data-cat="grau">Óculos de Grau</button>
+          <button class="pill" data-cat="lupa">Lupas de Aumento</button>
+          <button class="pill" data-cat="acessorio">Acessórios</button>
+        </div>
+      </div>
+
+      <p class="status-msg" id="statusMsg">Carregando coleção...</p>
+      <div class="grid" id="grid"></div>
+      <p class="vazio" id="vazio">Nenhum produto encontrado. Tente outra busca ou categoria.</p>
+    </div>
+  </section>
+
+  <section class="sobre" id="sobre">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#B68D40">Nossa história</p>
+      <h2>Tradição de quem entende de lentes.</h2>
+      <p>A Rainha das Lupas nasceu para quem não abre mão de enxergar — e de enxergar bem — com elegância. Cada peça da coleção é escolhida pensando em conforto no dia a dia e em durar muitos anos ao seu lado.</p>
+    </div>
+  </section>
+
+  <footer id="contato">
+    <div class="wrap">
+      <div class="contato-grid">
+        <div>
+          <p class="eyebrow">Fale com a gente</p>
+          <h2>Contato</h2>
+          <ul class="contato-lista">
+            <li>📍 Barreirinha, AM</li>
+            <li>📞 <a href="#" id="zap-footer-tel">(92) 9XXXX-XXXX</a></li>
+            <li>✉️ contato@rainhadaslupas.com.br</li>
+            <li>📷 <a href="#">@rainhadaslupas</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow">Atendimento rápido</p>
+          <h2 style="font-size:1.3rem; margin-bottom:14px;">Prefere o WhatsApp?</h2>
+          <a class="btn btn-primary" id="zap-footer" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="copy">
+        <span>© 2026 Rainha das Lupas</span>
+        <span>Site fase 2 — catálogo dinâmico (Firebase)</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<a class="float-zap" id="zap-flutuante" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M20 12a8 8 0 1 1-3.6-6.66" stroke="#FBF6EA" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 4a8 8 0 0 1 7.3 11.3L20 20l-4.8-1.2A8 8 0 1 1 12 4Z" stroke="#FBF6EA" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<!-- ===================== MODAL DE GALERIA (outros ângulos) ===================== -->
+<div class="galeria-overlay" id="galeriaOverlay">
+  <div class="galeria-box">
+    <button class="galeria-fechar" id="galeriaFechar" aria-label="Fechar galeria">✕</button>
+
+    <div class="galeria-principal">
+      <button class="galeria-seta galeria-seta-esq" id="setaEsq" aria-label="Foto anterior">‹</button>
+      <img id="galeriaImgPrincipal" src="" alt="">
+      <button class="galeria-seta galeria-seta-dir" id="setaDir" aria-label="Próxima foto">›</button>
+    </div>
+
+    <div class="galeria-info">
+      <span class="card-cat" id="galeriaCat"></span>
+      <h3 id="galeriaNome"></h3>
+      <p id="galeriaDesc"></p>
+      <span class="card-preco" id="galeriaPreco"></span>
+    </div>
+
+    <div class="galeria-miniaturas" id="galeriaMiniaturas"></div>
+  </div>
+</div>
+
+<script type="module" src="js/script.js"></script>
+
+</body>
+</html>
