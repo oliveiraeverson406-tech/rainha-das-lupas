@@ -1,15 +1,9 @@
 /* =======================================================
    TOKENS — paleta e tipografia da marca
-   ink       = texto principal (marrom quase preto, "couro envelhecido")
-   parchment = fundo da página (papel/pergaminho)
-   cream     = fundo dos cartões (mais claro que o parchment)
-   brass     = dourado/latão — detalhes de armação
-   burgundy  = vinho — cor "real", usada em CTAs e preços
-   glass     = azul-acinzentado — lente/vidro, categoria "grau"
 ======================================================= */
 :root{
   --ink: #2B1B12;
-  --parchment: D4D8DC;
+  --parchment: #0b8793;
   --cream: #FBF6EA;
   --brass: #B68D40;
   --burgundy: #6B1E2E;
@@ -26,7 +20,8 @@
 html{ scroll-behavior: smooth; }
 body{
   margin:0;
-  background: var(--parchment);
+  background: linear-gradient(135deg, #360033 0%, #0b8793 100%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--body);
   line-height: 1.5;
@@ -74,9 +69,9 @@ button{ font-family: inherit; cursor:pointer; }
 ======================================================= */
 header{
   position: sticky; top:0; z-index: 50;
-  background: rgba(242,232,213,.92);
+  background: rgba(54,0,51,.85);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(255,255,255,.1);
 }
 .header-inner{
   display:flex; align-items:center; justify-content:space-between;
@@ -87,7 +82,7 @@ header{
   display:flex; align-items:center; gap:10px;
   font-family: var(--display);
   font-weight:700; font-size: 1.35rem;
-  text-decoration:none; color: var(--ink);
+  text-decoration:none; color: #FBF6EA;
 }
 .brand-mark{
   width:30px; height:30px; flex-shrink:0;
@@ -96,7 +91,7 @@ header{
   display:flex; gap:28px; list-style:none; margin:0; padding:0;
   font-size: .95rem; font-weight:500;
 }
-.nav-links a{ text-decoration:none; position:relative; }
+.nav-links a{ text-decoration:none; position:relative; color: #FBF6EA; }
 .nav-links a::after{
   content:""; position:absolute; left:0; right:0; bottom:-4px; height:2px;
   background: var(--brass); transform: scaleX(0); transition: transform .25s ease;
@@ -111,13 +106,13 @@ header{
 }
 .btn:hover{ transform: translateY(-2px); }
 .btn-primary{ background: var(--burgundy); color: var(--cream); box-shadow: var(--shadow); }
-.btn-ghost{ background:transparent; border:1.5px solid var(--ink); color:var(--ink); }
-.btn-ghost:hover{ background: var(--ink); color: var(--cream); }
+.btn-ghost{ background:transparent; border:1.5px solid #FBF6EA; color:#FBF6EA; }
+.btn-ghost:hover{ background: #FBF6EA; color: var(--ink); }
 
 @media (max-width: 760px){ .nav-links{ display:none; } }
 
 /* =======================================================
-   HERO + LENTE INTERATIVA (elemento de assinatura)
+   HERO
 ======================================================= */
 .hero{
   padding: 64px 0 40px;
@@ -133,13 +128,15 @@ header{
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   line-height: 1.05;
   margin: 14px 0 18px;
+  color: #FBF6EA;
 }
 .hero h1 em{
-  font-style: italic; font-weight:500; color: var(--burgundy);
+  font-style: italic; font-weight:500; color: #B68D40;
 }
 .hero p{
-  font-size: 1.08rem; color: rgba(43,27,18,.78); max-width: 46ch; margin: 0 0 28px;
+  font-size: 1.08rem; color: rgba(251,246,234,.85); max-width: 46ch; margin: 0 0 28px;
 }
+.eyebrow{ color: #B68D40; }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
 
 @media (prefers-reduced-motion: no-preference){
@@ -151,26 +148,26 @@ header{
   }
 }
 
-/* palco da lupa: um painel texturizado com losangos (facetas de lente) */
+/* palco da lupa */
 .lens-stage{
   position: relative;
   aspect-ratio: 1 / 1;
   max-width: 440px; margin: 0 auto;
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255,255,255,.2);
   box-shadow: var(--shadow);
-  background-color: var(--cream);
+  background-color: rgba(54,0,51,.4);
   background-image:
     radial-gradient(circle at 20% 20%, rgba(182,141,64,.18), transparent 40%),
-    repeating-linear-gradient(45deg, rgba(74,102,112,.10) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(45deg, rgba(11,135,147,.15) 0 2px, transparent 2px 22px),
     repeating-linear-gradient(-45deg, rgba(107,30,46,.08) 0 2px, transparent 2px 22px);
   cursor: none;
 }
 .lens-stage .stage-label{
   position:absolute; bottom:16px; left:16px;
   font-family: var(--mono); font-size:.7rem; letter-spacing:.08em;
-  text-transform:uppercase; color: var(--ink); opacity:.55;
+  text-transform:uppercase; color: #FBF6EA; opacity:.55;
   pointer-events:none;
 }
 .lens{
@@ -178,7 +175,7 @@ header{
   border-radius:50%;
   border: 7px solid var(--brass);
   box-shadow: 0 8px 22px rgba(43,27,18,.35), inset 0 0 0 3px rgba(251,246,234,.7);
-  background-color: var(--cream);
+  background-color: rgba(11,135,147,.3);
   background-image:
     radial-gradient(circle at 20% 20%, rgba(182,141,64,.18), transparent 40%),
     repeating-linear-gradient(45deg, rgba(74,102,112,.10) 0 2px, transparent 2px 22px),
@@ -189,7 +186,6 @@ header{
   transition: opacity .15s ease;
 }
 .lens::after{
-  /* cabo da lupa */
   content:""; position:absolute; width:14px; height:64px;
   background: var(--brass); border-radius: 7px;
   right:-8px; bottom:-44px; transform: rotate(45deg);
@@ -202,7 +198,7 @@ header{
 }
 
 /* =======================================================
-   COLEÇÃO — busca, filtros e grade de produtos
+   COLEÇÃO
 ======================================================= */
 .colecao{ padding: 56px 0 70px; }
 .colecao-head{
@@ -210,7 +206,7 @@ header{
   margin-bottom: 28px;
 }
 .colecao-head h2{
-  font-family: var(--display); font-size: 2rem; margin: 8px 0 0;
+  font-family: var(--display); font-size: 2rem; margin: 8px 0 0; color: #FBF6EA;
 }
 
 .controls{
@@ -219,28 +215,29 @@ header{
 .search{
   flex: 1 1 220px;
   display:flex; align-items:center; gap:8px;
-  background: var(--cream); border:1px solid var(--line); border-radius:999px;
+  background: rgba(251,246,234,.15); border:1px solid rgba(255,255,255,.2); border-radius:999px;
   padding: 10px 18px;
 }
 .search input{
   border:none; background:transparent; outline:none; font-family: var(--body);
-  font-size:.95rem; width:100%; color: var(--ink);
+  font-size:.95rem; width:100%; color: #FBF6EA;
 }
+.search input::placeholder{ color: rgba(251,246,234,.5); }
 .pills{ display:flex; gap:10px; flex-wrap:wrap; }
 .pill{
-  padding: 9px 16px; border-radius:999px; border:1.5px solid var(--line);
-  background: var(--cream); font-size:.85rem; font-weight:600; color: var(--ink);
+  padding: 9px 16px; border-radius:999px; border:1.5px solid rgba(255,255,255,.3);
+  background: rgba(251,246,234,.1); font-size:.85rem; font-weight:600; color: #FBF6EA;
   transition: all .18s ease;
 }
 .pill:hover{ border-color: var(--brass); }
-.pill.active{ background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.pill.active{ background: #FBF6EA; color: var(--ink); border-color: #FBF6EA; }
 
 .status-msg{
-  display:none; text-align:center; padding: 30px 20px; color: rgba(43,27,18,.6);
+  display:none; text-align:center; padding: 30px 20px; color: rgba(251,246,234,.6);
   font-family: var(--mono); font-size:.85rem;
 }
 .status-msg.show{ display:block; }
-.status-msg.erro{ color: var(--burgundy); }
+.status-msg.erro{ color: #f093fb; }
 
 .grid{
   display:grid; gap: 24px;
@@ -248,18 +245,19 @@ header{
 }
 
 .card{
-  background: var(--cream); border:1px solid var(--line); border-radius: 16px;
+  background: rgba(251,246,234,.12);
+  backdrop-filter: blur(8px);
+  border:1px solid rgba(255,255,255,.2); border-radius: 16px;
   overflow:hidden; display:flex; flex-direction:column;
-  box-shadow: 0 1px 0 var(--line);
+  box-shadow: 0 1px 0 rgba(255,255,255,.1);
   transition: transform .2s ease, box-shadow .2s ease;
   cursor: pointer;
 }
-.card:hover{ transform: translateY(-4px); box-shadow: var(--shadow); }
+.card:hover{ transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.3); }
 
 .card-art{
   aspect-ratio: 4/3; display:flex; align-items:center; justify-content:center;
-  background:
-    repeating-linear-gradient(45deg, rgba(43,27,18,.04) 0 2px, transparent 2px 18px);
+  background: rgba(0,0,0,.2);
   position: relative;
   overflow: hidden;
 }
@@ -277,28 +275,29 @@ header{
 .card-body{ padding: 16px 18px 18px; display:flex; flex-direction:column; gap:6px; flex:1; }
 .card-cat{
   font-family: var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+  color: #B68D40;
 }
-.card-nome{ font-family: var(--display); font-weight:600; font-size:1.18rem; margin:0; }
-.card-desc{ font-size:.88rem; color: rgba(43,27,18,.68); margin:0 0 8px; flex:1; }
+.card-nome{ font-family: var(--display); font-weight:600; font-size:1.18rem; margin:0; color: #FBF6EA; }
+.card-desc{ font-size:.88rem; color: rgba(251,246,234,.68); margin:0 0 8px; flex:1; }
 .card-bottom{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.card-preco{ font-family: var(--mono); font-weight:700; color: var(--burgundy); font-size:1rem; }
+.card-preco{ font-family: var(--mono); font-weight:700; color: #B68D40; font-size:1rem; }
 .card-zap{
   display:flex; align-items:center; gap:6px;
   font-size:.78rem; font-weight:600; text-decoration:none;
-  color: var(--ink); border:1.5px solid var(--ink); border-radius:999px; padding:7px 12px;
+  color: #FBF6EA; border:1.5px solid #FBF6EA; border-radius:999px; padding:7px 12px;
   transition: all .18s ease;
   position: relative; z-index: 2;
 }
-.card-zap:hover{ background: var(--ink); color: var(--cream); }
+.card-zap:hover{ background: #FBF6EA; color: var(--ink); }
 
 .vazio{
-  display:none; text-align:center; padding: 50px 20px; color: rgba(43,27,18,.6);
+  display:none; text-align:center; padding: 50px 20px; color: rgba(251,246,234,.6);
   font-family: var(--body);
 }
 .vazio.show{ display:block; }
 
 /* =======================================================
-   GALERIA — modal com fotos em outros ângulos
+   GALERIA
 ======================================================= */
 .galeria-overlay{
   display:none;
@@ -367,7 +366,8 @@ header{
    SOBRE
 ======================================================= */
 .sobre{
-  background: var(--ink); color: var(--cream); padding: 64px 0;
+  background: rgba(0,0,0,.4); color: var(--cream); padding: 64px 0;
+  backdrop-filter: blur(4px);
 }
 .sobre .wrap{ max-width: 760px; }
 .sobre h2{ font-family: var(--display); font-size: 2rem; margin-top:8px; }
@@ -381,12 +381,12 @@ footer{ padding: 56px 0 40px; }
   display:grid; grid-template-columns: 1.1fr .9fr; gap: 40px;
 }
 @media (max-width: 700px){ .contato-grid{ grid-template-columns: 1fr; } }
-footer h2{ font-family: var(--display); font-size:1.8rem; margin-top:8px; }
-.contato-lista{ list-style:none; padding:0; margin:18px 0 0; display:flex; flex-direction:column; gap:10px; font-size:.95rem; }
-.contato-lista a{ text-decoration:none; }
-.contato-lista a:hover{ color: var(--burgundy); }
-.copy{ margin-top: 50px; padding-top: 22px; border-top:1px solid var(--line);
-  font-size:.8rem; color: rgba(43,27,18,.55); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+footer h2{ font-family: var(--display); font-size:1.8rem; margin-top:8px; color: #FBF6EA; }
+.contato-lista{ list-style:none; padding:0; margin:18px 0 0; display:flex; flex-direction:column; gap:10px; font-size:.95rem; color: #FBF6EA; }
+.contato-lista a{ text-decoration:none; color: #FBF6EA; }
+.contato-lista a:hover{ color: var(--brass); }
+.copy{ margin-top: 50px; padding-top: 22px; border-top:1px solid rgba(255,255,255,.15);
+  font-size:.8rem; color: rgba(251,246,234,.55); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
 
 /* botão flutuante do WhatsApp */
 .float-zap{
@@ -398,4 +398,4 @@ footer h2{ font-family: var(--display); font-size:1.8rem; margin-top:8px; }
   transition: transform .2s ease;
 }
 .float-zap:hover{ transform: scale(1.08); }
-   
+                                          
