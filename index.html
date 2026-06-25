@@ -11,8 +11,142 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* =============================================
+   SPLASH SCREEN
+============================================= */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #1a0a0f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#splash.sumir {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-stage {
+  position: relative;
+  width: 260px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ÓCULOS — sobe de baixo */
+#splash-oculos {
+  position: absolute;
+  width: 220px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  opacity: 0;
+  animation: sobeDeBaixo 0.8s cubic-bezier(.22,1,.36,1) 0.3s forwards;
+}
+
+/* COROA — cai de cima */
+#splash-coroa {
+  position: absolute;
+  width: 90px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-120px);
+  opacity: 0;
+  animation: caiDoCeu 0.7s cubic-bezier(.22,1,.36,1) 1.2s forwards;
+}
+
+/* TEXTO — aparece depois */
+#splash-texto {
+  margin-top: 28px;
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #FBF6EA;
+  letter-spacing: 0.04em;
+  text-align: center;
+  opacity: 0;
+  animation: apareceTexto 0.6s ease 2.0s forwards;
+}
+
+#splash-texto span {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #B68D40;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+@keyframes sobeDeBaixo {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes caiDoCeu {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-120px) rotate(-8deg);
+  }
+  70% {
+    transform: translateX(-50%) translateY(8px) rotate(2deg);
+    opacity: 1;
+  }
+  85% {
+    transform: translateX(-50%) translateY(-4px) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes apareceTexto {
+  to { opacity: 1; }
+}
+</style>
 </head>
 <body>
+
+<!-- =============================================
+     SPLASH SCREEN
+============================================= -->
+<div id="splash">
+  <div class="splash-stage">
+    <img id="splash-oculos"
+      src="https://res.cloudinary.com/df2r4q8jh/image/upload/e_background_removal/v1782345953/1782345513509_lixq1e.png"
+      alt="Óculos">
+    <img id="splash-coroa"
+      src="https://res.cloudinary.com/df2r4q8jh/image/upload/e_background_removal/v1782345990/1782345870178_cyewqk.png"
+      alt="Coroa">
+  </div>
+  <div id="splash-texto">
+    Rainha das Lupas
+    <span>Ótica · óculos e lupas de aumento</span>
+  </div>
+</div>
+
+<script>
+  // Some o splash após a animação completa
+  setTimeout(function() {
+    document.getElementById('splash').classList.add('sumir');
+    setTimeout(function() {
+      document.getElementById('splash').remove();
+    }, 800);
+  }, 3200);
+</script>
 
 <header>
   <div class="header-inner">
