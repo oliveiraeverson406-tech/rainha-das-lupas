@@ -20,7 +20,7 @@
 html{ scroll-behavior: smooth; }
 body{
   margin:0;
-  background: linear-gradient(135deg, #360033 0%, #0b8793 100%);
+  background: linear-gradient(135deg, #000000 0%, #434343 100%);
   background-attachment: fixed;
   color: var(--ink);
   font-family: var(--body);
