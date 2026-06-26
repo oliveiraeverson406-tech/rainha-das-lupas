@@ -71,6 +71,7 @@ header{
   font-family: var(--display);
   font-weight:700; font-size: 1.35rem;
   text-decoration:none; color: #FFFFFF;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5); /* ← adiciona isso */
 }
 .brand-mark{
   width:30px; height:30px; flex-shrink:0;
