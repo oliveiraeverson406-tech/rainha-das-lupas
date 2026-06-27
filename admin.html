@@ -12,6 +12,36 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="admin.css">
+
+<style>
+/* === ANIMAÇÃO DOS CAMPOS DE LOGIN === */
+
+.campo-email {
+  opacity: 0;
+  transform: translateX(-80px);
+  animation: entraDaEsquerda 0.6s cubic-bezier(.22,1,.36,1) 0.2s forwards;
+}
+
+.campo-senha {
+  opacity: 0;
+  transform: translateX(80px);
+  animation: entraDaDireita 0.6s cubic-bezier(.22,1,.36,1) 0.45s forwards;
+}
+
+@keyframes entraDaEsquerda {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes entraDaDireita {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
 </head>
 <body class="admin-body">
 
@@ -22,11 +52,11 @@
     <h1>Rainha das Lupas</h1>
     <p class="login-sub">Entre com o e-mail e senha cadastrados para gerenciar os produtos do site.</p>
 
-    <label class="campo">
+    <label class="campo campo-email">
       <span>E-mail</span>
       <input type="email" id="loginEmail" required autocomplete="username">
     </label>
-    <label class="campo">
+    <label class="campo campo-senha">
       <span>Senha</span>
       <input type="password" id="loginSenha" required autocomplete="current-password">
     </label>
