@@ -35,7 +35,7 @@ body.admin-body {
 
 /* Rainha das Lupas — mantém */
 .login-card h1 {
-  color: #f5e6c0 !important;
+  color: #FFB300 !important;
   font-family: var(--display);
   font-size: 1.7rem;
   margin: 6px 0 10px;
@@ -76,7 +76,7 @@ body.admin-body {
 .login-card .campo input[type="email"],
 .login-card .campo input[type="password"] {
   background: #2a2200 !important;
-  color: #f5e6c0 !important;
+  color: #FFB300 !important;
   border: 1.5px solid #3a3000 !important;
   border-radius: 10px;
   padding: 11px 14px;
@@ -92,7 +92,7 @@ body.admin-body {
 
 /* BOTÃO ENTRAR — maior, dourado */
 .login-card .btn-primary {
-  background: #B68D40 !important;
+  background: #FFB300 !important;
   color: #0d0d00 !important;
   font-weight: 700 !important;
   font-size: 1.15rem !important;
