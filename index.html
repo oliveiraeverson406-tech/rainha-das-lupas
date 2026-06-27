@@ -117,9 +117,31 @@
   to { opacity: 1; }
 }
 
-/* =============================================
-   LOGO HERO — texto sobreposto
-============================================= */
+.hero-oculos-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.hero-oculos {
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.hero-coroa {
+  position: absolute;
+  width: 38%;
+  top: -28%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+}
+
 .hero-logo-wrap {
   position: relative;
   margin-bottom: 16px;
@@ -196,7 +218,10 @@
     <div class="wrap hero-grid">
       <div>
         <div class="hero-logo-wrap hero-fade">
-          <img src="https://res.cloudinary.com/df2r4q8jh/image/upload/e_background_removal/v1782310997/1782306242929_ymavx9.png" alt="Rainha das Lupas">
+          <div class="hero-oculos-wrap">
+            <img class="hero-coroa" src="https://res.cloudinary.com/df2r4q8jh/image/upload/e_background_removal/v1782522222/ilustracao-de-desenho-animado-da-coroa-real-dos-reis-para-projetos-de-design_1322206-21794_f47ptc.jpg" alt="Coroa">
+            <img class="hero-oculos" src="https://res.cloudinary.com/df2r4q8jh/image/upload/e_background_removal/v1782521846/ev_skvq0v.jpg" alt="Óculos">
+          </div>
           <span class="hero-logo-texto">RAINHA<br>DAS LUPAS</span>
         </div>
         <p class="eyebrow hero-fade">Ótica · óculos e lupas de aumento</p>
