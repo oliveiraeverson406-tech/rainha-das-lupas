@@ -221,91 +221,8 @@
     <div class="wrap hero-grid">
       <div>
         <div class="hero-logo-wrap hero-fade">
-          <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;display:block;margin:0 auto;">
-            <defs>
-              <!-- Gradiente lente azul espelhada -->
-              <linearGradient id="lente" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#a8d8f0"/>
-                <stop offset="30%" style="stop-color:#4fa3e0"/>
-                <stop offset="60%" style="stop-color:#1a6bbf"/>
-                <stop offset="100%" style="stop-color:#0a3d7a"/>
-              </linearGradient>
-              <!-- Gradiente reflexo -->
-              <linearGradient id="reflexo" x1="0%" y1="0%" x2="60%" y2="100%">
-                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.5"/>
-                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
-              </linearGradient>
-              <!-- Gradiente armação -->
-              <linearGradient id="armacao" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#2a2a2a"/>
-                <stop offset="100%" style="stop-color:#0a0a0a"/>
-              </linearGradient>
-              <!-- Gradiente coroa -->
-              <linearGradient id="coroa" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#FFD700"/>
-                <stop offset="50%" style="stop-color:#B8860B"/>
-                <stop offset="100%" style="stop-color:#8B6914"/>
-              </linearGradient>
-              <linearGradient id="coroaClaro" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#FFE44D"/>
-                <stop offset="100%" style="stop-color:#FFC200"/>
-              </linearGradient>
-            </defs>
-
-            <!-- COROA -->
-            <g transform="translate(200, 58)">
-              <!-- Base da coroa -->
-              <rect x="-45" y="12" width="90" height="22" rx="4" fill="url(#coroa)"/>
-              <!-- Pontas da coroa -->
-              <polygon points="0,-30 12,-5 -12,-5" fill="url(#coroaClaro)"/>
-              <polygon points="-30,-18 -18,0 -42,0" fill="url(#coroa)"/>
-              <polygon points="30,-18 18,0 42,0" fill="url(#coroa)"/>
-              <!-- Bolinhas no topo -->
-              <circle cx="0" cy="-32" r="5" fill="#FFE44D"/>
-              <circle cx="-30" cy="-20" r="4" fill="#FFD700"/>
-              <circle cx="30" cy="-20" r="4" fill="#FFD700"/>
-              <!-- Detalhes na base -->
-              <circle cx="-20" cy="23" r="5" fill="#8B6914" opacity="0.6"/>
-              <circle cx="0" cy="23" r="5" fill="#8B6914" opacity="0.6"/>
-              <circle cx="20" cy="23" r="5" fill="#8B6914" opacity="0.6"/>
-            </g>
-
-            <!-- ÓCULOS -->
-            <g transform="translate(200, 175)">
-              <!-- Armação externa -->
-              <path d="M-155,0 Q-155,-45 -100,-50 Q-50,-55 0,-45 Q50,-55 100,-50 Q155,-45 155,0 Q155,40 100,45 Q50,50 0,38 Q-50,50 -100,45 Q-155,40 -155,0 Z"
-                fill="url(#armacao)" stroke="#111" stroke-width="2"/>
-
-              <!-- Lente esquerda -->
-              <path d="M-148,0 Q-148,-38 -100,-43 Q-55,-48 -10,-35 L-10,35 Q-55,48 -100,43 Q-148,38 -148,0 Z"
-                fill="url(#lente)"/>
-              <!-- Reflexo lente esquerda -->
-              <path d="M-140,-10 Q-130,-35 -100,-38 Q-75,-40 -50,-30 L-55,-5 Q-80,-15 -105,-12 Q-128,-10 -140,-10 Z"
-                fill="url(#reflexo)"/>
-
-              <!-- Lente direita -->
-              <path d="M148,0 Q148,-38 100,-43 Q55,-48 10,-35 L10,35 Q55,48 100,43 Q148,38 148,0 Z"
-                fill="url(#lente)"/>
-              <!-- Reflexo lente direita -->
-              <path d="M140,-10 Q130,-35 100,-38 Q75,-40 50,-30 L55,-5 Q80,-15 105,-12 Q128,-10 140,-10 Z"
-                fill="url(#reflexo)"/>
-
-              <!-- Ponte central (nariz) -->
-              <path d="M-10,-35 Q-5,-20 0,-15 Q5,-20 10,-35" fill="none" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
-
-              <!-- Hastes laterais -->
-              <path d="M-148,0 L-175,-5" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round"/>
-              <path d="M148,0 L175,-5" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round"/>
-            </g>
-
-            <!-- TEXTO -->
-            <text x="200" y="258" text-anchor="middle"
-              font-family="Fraunces, serif" font-weight="700" font-size="32"
-              letter-spacing="6" fill="#FFFFFF">RAINHA</text>
-            <text x="200" y="292" text-anchor="middle"
-              font-family="Fraunces, serif" font-weight="700" font-size="32"
-              letter-spacing="6" fill="#FFFFFF">DAS LUPAS</text>
-          </svg>
+          <img src="https://res.cloudinary.com/df2r4q8jh/image/upload/v1782527581/1000115329-fotor-bg-remover-20260626222946_gforpy.png" alt="Rainha das Lupas" style="width:100%;max-width:100%;display:block;">
+          <span class="hero-logo-texto">RAINHA<br>DAS LUPAS</span>
         </div>
         <p class="eyebrow hero-fade">Ótica · óculos e lupas de aumento</p>
         <h1 class="hero-fade delay">Enxergue como uma <em>rainha</em>.</h1>
@@ -417,5 +334,4 @@
 <script type="module" src="script.js"></script>
 
 </body>
-         </html>
-         
+</html>
