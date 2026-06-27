@@ -1,116 +1,218 @@
-/* =======================================================
-   PAINEL ADMIN — reaproveita os tokens definidos em style.css
-======================================================= */
-.admin-body{ background: var(--parchment); min-height: 100vh; }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin | Rainha das Lupas</title>
+<meta name="robots" content="noindex, nofollow">
 
-/* ---------- tela de login ---------- */
-.login-tela{
-  min-height: 100vh; display:flex; align-items:center; justify-content:center;
-  padding: 24px;
-}
-.login-tela[hidden]{ display: none; }
-.login-card{
-  background: var(--cream); border:1px solid var(--line); border-radius: 18px;
-  box-shadow: var(--shadow); padding: 36px 32px; max-width: 380px; width:100%;
-}
-.login-card h1{
-  font-family: var(--display); font-size: 1.7rem; margin: 6px 0 10px;
-}
-.login-sub{ font-size:.92rem; color: rgba(43,27,18,.68); margin: 0 0 22px; }
-.login-erro{ color: var(--burgundy); font-size:.85rem; margin: 12px 0 0; min-height: 1.2em; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-/* ---------- campos de formulário (compartilhado) ---------- */
-.campo{ display:flex; flex-direction:column; gap:6px; margin-bottom: 16px; }
-.campo span{ font-family: var(--mono); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color: var(--ink); opacity:.7; }
-.campo input[type="text"],
-.campo input[type="email"],
-.campo input[type="password"],
-.campo input[type="number"],
-.campo input[type="url"],
-.campo select,
-.campo textarea{
-  border: 1.5px solid var(--line); border-radius: 10px; background: var(--parchment);
-  padding: 11px 14px; font-family: var(--body); font-size: .95rem; color: var(--ink);
-  outline: none; transition: border-color .15s ease;
-}
-.campo input:focus, .campo select:focus, .campo textarea:focus{ border-color: var(--brass); }
-.campo textarea{ resize: vertical; }
-.campo-ajuda{ font-size:.8rem; color: rgba(43,27,18,.55); margin: -2px 0 8px; }
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
 
-.campo-checkbox{
-  display:flex; align-items:center; gap:10px; margin: 4px 0 22px; font-size:.92rem;
-}
-.campo-checkbox input{ width:18px; height:18px; accent-color: var(--burgundy); }
-
-.btn-full{ width:100%; justify-content:center; }
-.btn-pequeno{ padding: 7px 14px; font-size:.82rem; }
-
-/* ---------- header do painel ---------- */
-.admin-header{
-  background: rgba(242,232,213,.95); border-bottom: 1px solid var(--line);
-  position: sticky; top:0; z-index: 20;
-}
-.admin-header-inner{
-  display:flex; align-items:center; justify-content:space-between; padding: 16px 24px;
-}
-.admin-header-acoes{ display:flex; align-items:center; gap:14px; }
-.admin-usuario{ font-family: var(--mono); font-size:.78rem; color: rgba(43,27,18,.6); }
-
-.admin-main{ padding: 36px 24px 70px; display:flex; flex-direction:column; gap:32px; }
-
-/* ---------- card do formulário ---------- */
-.admin-form-card, .admin-lista-card{
-  background: var(--cream); border:1px solid var(--line); border-radius: 16px;
-  padding: 26px 24px; box-shadow: 0 1px 0 var(--line);
-}
-.admin-form-card h2, .admin-lista-card h2{
-  font-family: var(--display); font-size: 1.4rem; margin: 4px 0 18px;
+<style>
+/* === TEMA NOITE DOURADA === */
+.admin-body {
+  background: linear-gradient(135deg, #0d0d0d, #1a1200) !important;
+  min-height: 100vh;
 }
 
-.form-linha{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
-@media (max-width: 640px){ .form-linha{ grid-template-columns: 1fr; } }
-
-.lista-imagens{ display:flex; flex-direction:column; gap:8px; margin-bottom: 10px; }
-.linha-imagem{ display:flex; gap:8px; align-items:center; }
-.linha-imagem input{ flex:1; }
-.linha-imagem .btn-remover-img{
-  border:none; background:transparent; color: var(--burgundy); font-size:1.2rem;
-  width:32px; height:32px; border-radius:50%; flex-shrink:0;
-}
-.linha-imagem .btn-remover-img:hover{ background: rgba(107,30,46,.1); }
-.linha-imagem img.preview{
-  width:38px; height:38px; object-fit:cover; border-radius:8px; flex-shrink:0;
-  border: 1px solid var(--line);
+.login-card {
+  background: #1a1600 !important;
+  border-color: #3a3000 !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6) !important;
 }
 
-.form-acoes{ display:flex; gap:12px; align-items:center; margin-top: 6px; }
-.form-msg{ font-size:.85rem; margin: 12px 0 0; min-height: 1.2em; }
-.form-msg.sucesso{ color: #2f6b3a; }
-.form-msg.erro{ color: var(--burgundy); }
+.login-card .eyebrow {
+  color: #B68D40 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.18em;
+}
 
-/* ---------- lista de produtos ---------- */
-.admin-lista-head{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
-.admin-contador{ font-family: var(--mono); font-size:.78rem; color: rgba(43,27,18,.55); }
+.login-card h1 {
+  color: #f5e6c0 !important;
+  font-size: 2rem !important;
+}
 
-.lista-produtos{ display:flex; flex-direction:column; gap:10px; margin-top: 8px; }
-.item-produto{
-  display:flex; align-items:center; gap:14px;
-  border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px;
-  background: var(--parchment);
+.login-sub {
+  color: #c8b88a !important;
+  font-size: 1rem !important;
 }
-.item-produto .thumb{
-  width:52px; height:52px; border-radius:9px; object-fit:cover; flex-shrink:0;
-  background: var(--cream); border: 1px solid var(--line);
+
+.login-card .campo span {
+  color: #B68D40 !important;
+  opacity: 1 !important;
+  font-size: 0.82rem !important;
 }
-.item-info{ flex:1; min-width:0; }
-.item-info .nome{ font-weight:600; font-size:.95rem; }
-.item-info .meta{ font-family: var(--mono); font-size:.74rem; color: rgba(43,27,18,.55); display:flex; gap:10px; flex-wrap:wrap; }
-.item-info .meta .inativo{ color: var(--burgundy); }
-.item-acoes{ display:flex; gap:8px; flex-shrink:0; }
-.item-acoes button{
-  border: 1.5px solid var(--ink); background:transparent; color: var(--ink);
-  border-radius: 999px; padding: 6px 13px; font-size:.78rem; font-weight:600;
+
+.login-card .campo input {
+  background: #2a2200 !important;
+  color: #f5e6c0 !important;
+  border-color: #3a3000 !important;
+  font-size: 1rem !important;
 }
-.item-acoes button:hover{ background: var(--ink); color: var(--cream); }
-.item-acoes .btn-excluir{ border-color: var(--burgundy); color: var(--burgundy); }
-.item-acoes .btn-excluir:hover{ background: var(--burgundy); color: var(--cream); }
+
+.login-card .campo input:focus {
+  border-color: #B68D40 !important;
+}
+
+.login-card .btn-primary {
+  background: #B68D40 !important;
+  color: #0d0d0d !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  border: none !important;
+}
+
+.login-card .btn-primary:hover {
+  background: #d4a84e !important;
+}
+
+.login-erro {
+  color: #ffaa44 !important;
+}
+
+/* === ANIMAÇÕES === */
+.campo-email {
+  opacity: 0;
+  transform: translateX(-80px);
+  animation: entraDaEsquerda 0.6s cubic-bezier(.22,1,.36,1) 0.2s forwards;
+}
+
+.campo-senha {
+  opacity: 0;
+  transform: translateX(80px);
+  animation: entraDaDireita 0.6s cubic-bezier(.22,1,.36,1) 0.45s forwards;
+}
+
+.btn-full {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: entraDeBaixo 0.6s cubic-bezier(.22,1,.36,1) 0.7s forwards;
+}
+
+@keyframes entraDaEsquerda {
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes entraDaDireita {
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes entraDeBaixo {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body class="admin-body">
+
+<!-- ===================== TELA DE LOGIN ===================== -->
+<div class="login-tela" id="loginTela">
+  <form class="login-card" id="loginForm">
+    <p class="eyebrow">Painel administrativo</p>
+    <h1>Rainha das Lupas</h1>
+    <p class="login-sub">Entre com o e-mail e senha cadastrados para gerenciar os produtos do site.</p>
+
+    <label class="campo campo-email">
+      <span>E-mail</span>
+      <input type="email" id="loginEmail" required autocomplete="username">
+    </label>
+    <label class="campo campo-senha">
+      <span>Senha</span>
+      <input type="password" id="loginSenha" required autocomplete="current-password">
+    </label>
+
+    <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+    <p class="login-erro" id="loginErro"></p>
+  </form>
+</div>
+
+<!-- ===================== PAINEL (após login) ===================== -->
+<div class="admin-painel" id="adminPainel" hidden>
+
+  <header class="admin-header">
+    <div class="wrap admin-header-inner">
+      <a href="#" class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="13" cy="13" r="9" stroke="#6B1E2E" stroke-width="2.4"/>
+          <line x1="19.5" y1="19.5" x2="27" y2="27" stroke="#B68D40" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        Painel · Rainha das Lupas
+      </a>
+      <div class="admin-header-acoes">
+        <span class="admin-usuario" id="adminUsuario"></span>
+        <button class="btn btn-ghost" id="btnSair">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap admin-main">
+
+    <!-- ===================== FORMULÁRIO ===================== -->
+    <section class="admin-form-card">
+      <p class="eyebrow" id="formModo">Novo produto</p>
+      <h2>Cadastrar / editar produto</h2>
+
+      <form id="produtoForm">
+        <div class="form-linha">
+          <label class="campo">
+            <span>Nome do produto</span>
+            <input type="text" id="campoNome" required placeholder="Ex: Aviador Imperial">
+          </label>
+          <label class="campo campo-curto">
+            <span>Categoria</span>
+            <select id="campoCategoria" required>
+              <option value="sol">Óculos de Sol</option>
+              <option value="grau">Óculos de Grau</option>
+              <option value="lupa">Lupa de Aumento</option>
+              <option value="acessorio">Acessório</option>
+            </select>
+          </label>
+          <label class="campo campo-curto">
+            <span>Preço (R$)</span>
+            <input type="number" id="campoPreco" step="0.01" min="0" required placeholder="189.90">
+          </label>
+        </div>
+
+        <label class="campo">
+          <span>Descrição curta</span>
+          <textarea id="campoDescricao" rows="2" placeholder="Frase curta que aparece no card do produto"></textarea>
+        </label>
+
+        <div class="campo">
+          <span>Fotos do produto (link de cada imagem, um ângulo por foto)</span>
+          <p class="campo-ajuda">A primeira foto vira a capa do card. Cole o link direto da imagem (ex: hospedada no ImgBB, Cloudinary, Google Drive público, etc).</p>
+          <div id="listaImagens" class="lista-imagens"></div>
+          <button type="button" class="btn btn-ghost btn-pequeno" id="btnAddImagem">+ Adicionar foto</button>
+        </div>
+
+        <label class="campo-checkbox">
+          <input type="checkbox" id="campoAtivo" checked>
+          <span>Mostrar este produto no site</span>
+        </label>
+
+        <div class="form-acoes">
+          <button type="submit" class="btn btn-primary" id="btnSalvar">Salvar produto</button>
+          <button type="button" class="btn btn-ghost" id="btnCancelarEdicao" hidden>Cancelar edição</button>
+        </div>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </section>
+
+    <!-- ===================== LISTA DE PRODUTOS ===================== -->
+    <section class="admin-lista-card">
+      <div class="admin-lista-head">
+        <h2>Produtos cadastrados</h2>
+        <span class="admin-contador" id="contadorProdutos"></span>
+      </div>
+      <p class="status-msg show" id="listaStatus">Carregando produtos...</p>
+      <div class="lista-produtos" id="listaProdutos"></div>
+    </section>
+
+  </main>
+</div>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>
