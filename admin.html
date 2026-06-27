@@ -35,6 +35,19 @@
   }
 }
 
+.btn-full {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: entraDeBaixo 0.6s cubic-bezier(.22,1,.36,1) 0.7s forwards;
+}
+
+@keyframes entraDeBaixo {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes entraDaDireita {
   to {
     opacity: 1;
