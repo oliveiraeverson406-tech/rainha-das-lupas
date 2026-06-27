@@ -2,18 +2,21 @@
    PAINEL ADMIN — reaproveita os tokens definidos em style.css
 ======================================================= */
 
-/* === NOITE DOURADA — só fundo e card de login === */
+/* === RESTAURA O FUNDO DO BODY PARA O PAINEL === */
 body.admin-body {
-  background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 100%) !important;
+  background: var(--parchment) !important;
   background-attachment: fixed !important;
 }
 
+/* === NOITE DOURADA — fundo escuro só na tela de login === */
 .login-tela {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 100%);
+  background-attachment: fixed;
 }
 
 .login-card {
@@ -26,14 +29,12 @@ body.admin-body {
   width: 100%;
 }
 
-/* PAINEL ADMINISTRATIVO — branco, maior */
 .login-card .eyebrow {
   color: #ffffff !important;
   font-size: 0.9rem !important;
   letter-spacing: 0.16em;
 }
 
-/* Rainha das Lupas — mantém */
 .login-card h1 {
   color: #FFB300 !important;
   font-family: var(--display);
@@ -41,7 +42,6 @@ body.admin-body {
   margin: 6px 0 10px;
 }
 
-/* Entre com o e-mail... — branco, maior */
 .login-sub {
   font-size: 1.05rem !important;
   color: #ffffff !important;
@@ -55,7 +55,6 @@ body.admin-body {
   min-height: 1.2em;
 }
 
-/* labels E-MAIL / SENHA — ouro vivo, maior */
 .login-card .campo {
   display: flex;
   flex-direction: column;
@@ -76,7 +75,7 @@ body.admin-body {
 .login-card .campo input[type="email"],
 .login-card .campo input[type="password"] {
   background: #2a2200 !important;
-  color: #FFB300 !important;
+  color: #f5e6c0 !important;
   border: 1.5px solid #3a3000 !important;
   border-radius: 10px;
   padding: 11px 14px;
@@ -90,7 +89,6 @@ body.admin-body {
   border-color: #FFB300 !important;
 }
 
-/* BOTÃO ENTRAR — maior, dourado */
 .login-card .btn-primary {
   background: #FFB300 !important;
   color: #0d0d00 !important;
@@ -102,7 +100,7 @@ body.admin-body {
 }
 
 .login-card .btn-primary:hover {
-  background: #FFB300 !important;
+  background: #ffc933 !important;
   transform: translateY(-2px);
 }
 
@@ -201,3 +199,4 @@ body.admin-body {
 .item-acoes button:hover{ background: var(--ink); color: var(--cream); }
 .item-acoes .btn-excluir{ border-color: var(--burgundy); color: var(--burgundy); }
 .item-acoes .btn-excluir:hover{ background: var(--burgundy); color: var(--cream); }
+   
