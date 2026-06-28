@@ -14,58 +14,175 @@
 <link rel="stylesheet" href="admin.css">
 
 <style>
-/* === ANIMAÇÕES === */
-.campo-email {
-  opacity: 0;
-  transform: translateX(-80px);
-  animation: entraDaEsquerda 0.6s cubic-bezier(.22,1,.36,1) 0.2s forwards;
+/* === FUNDO GERAL === */
+body.admin-body {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  color: #f5e6c0 !important;
 }
 
-.campo-senha {
-  opacity: 0;
-  transform: translateX(80px);
-  animation: entraDaDireita 0.6s cubic-bezier(.22,1,.36,1) 0.45s forwards;
-}
-
-.btn-full {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: entraDeBaixo 0.6s cubic-bezier(.22,1,.36,1) 0.7s forwards;
-}
-
-@keyframes entraDaEsquerda {
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes entraDaDireita {
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes entraDeBaixo {
-  to { opacity: 1; transform: translateY(0); }
-}
-  /* corrige SVG da lupa no header do painel */
-.brand-mark {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-}
-
-.brand {
+/* === LOGIN === */
+.login-tela {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  color: var(--ink);
-  text-decoration: none;
+  justify-content: center;
+  padding: 24px;
 }
-  .campo span,
-.campo-checkbox span,
-.campo-ajuda,
-.eyebrow,
-.admin-contador,
-.status-msg {
+.login-card {
+  background: #1e1900 !important;
+  border: 1px solid #3a3000 !important;
+  border-radius: 18px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.7) !important;
+  padding: 36px 32px;
+  max-width: 380px;
+  width: 100%;
+}
+.login-card .eyebrow { color: #ffffff !important; font-size: 0.82rem !important; }
+.login-card h1 { color: #ffffff !important; font-size: 1.7rem !important; margin: 6px 0 10px; }
+.login-sub { color: #ffffff !important; font-size: 1rem !important; margin: 0 0 22px; text-align: justify; }
+.login-card .campo span { color: #ffffff !important; opacity: 1 !important; font-size: 0.85rem !important; }
+.login-card .campo input[type="email"],
+.login-card .campo input[type="password"] {
+  background: #2a2200 !important; color: #f5e6c0 !important;
+  border: 1.5px solid #3a3000 !important; border-radius: 10px; padding: 11px 14px;
+}
+.login-card .campo input:focus { border-color: #B68D40 !important; outline: none; }
+.login-card .btn-primary {
+  background: #B68D40 !important; color: #0d0d00 !important;
+  font-weight: 700 !important; border: none !important; border-radius: 999px; width: 100%;
+}
+.login-card .btn-primary:hover { background: #d4a848 !important; }
+.login-erro { color: #ffbb55 !important; }
+
+/* === HEADER DO PAINEL === */
+.admin-header {
+  background: #1e1900 !important;
+  border-bottom: 1px solid #3a3000 !important;
+  position: sticky; top: 0; z-index: 20;
+}
+.admin-header-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; padding: 16px 24px;
+}
+.brand {
+  display: flex !important; align-items: center !important;
+  gap: 10px; font-size: 0.9rem;
+  color: #f5e6c0 !important; text-decoration: none;
+}
+.brand-mark { width: 28px !important; height: 28px !important; flex-shrink: 0; }
+.admin-usuario { color: #ffffff !important; font-size: .78rem; }
+.admin-header-acoes { display: flex; align-items: center; gap: 14px; }
+
+/* === BOTÕES === */
+.btn-ghost {
+  background: transparent !important;
+  border: 1.5px solid #B68D40 !important;
   color: #ffffff !important;
+  border-radius: 999px; padding: 7px 16px;
+  font-size: .85rem; font-weight: 600;
 }
+.btn-ghost:hover { background: #2a2200 !important; }
+.btn-primary {
+  background: #B68D40 !important; color: #0d0d00 !important;
+  font-weight: 700 !important; border: none !important;
+  border-radius: 999px; padding: 11px 24px; cursor: pointer;
+}
+.btn-primary:hover { background: #d4a848 !important; }
+.btn-full { width: 100% !important; justify-content: center; }
+.btn-pequeno { padding: 7px 14px !important; font-size: .82rem !important; }
+
+/* === ÁREA PRINCIPAL === */
+.admin-main { padding: 36px 24px 70px; display: flex; flex-direction: column; gap: 32px; }
+
+/* === CARDS === */
+.admin-form-card, .admin-lista-card {
+  background: #1e1900 !important;
+  border: 1px solid #3a3000 !important;
+  border-radius: 16px; padding: 26px 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
+}
+.admin-form-card h2, .admin-lista-card h2 {
+  color: #FFB300 !important; font-size: 1.4rem; margin: 4px 0 18px;
+}
+.eyebrow { color: #ffffff !important; font-size: 0.85rem !important; letter-spacing: 0.1em; }
+
+/* === CAMPOS === */
+.campo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.campo span { color: #ffffff !important; opacity: 1 !important; font-size: .85rem !important; text-transform: uppercase; letter-spacing: .05em; }
+.campo input[type="text"],
+.campo input[type="number"],
+.campo input[type="url"],
+.campo select,
+.campo textarea {
+  background: #2a2200 !important; color: #f5e6c0 !important;
+  border: 1.5px solid #3a3000 !important; border-radius: 10px;
+  padding: 11px 14px; font-size: .95rem; outline: none;
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: #B68D40 !important; }
+.campo textarea { resize: vertical; }
+.campo-ajuda { font-size: .85rem !important; color: #cccccc !important; margin: -2px 0 8px; }
+.campo-checkbox { display: flex; align-items: center; gap: 10px; margin: 4px 0 22px; color: #ffffff !important; }
+.campo-checkbox span { color: #ffffff !important; text-transform: none !important; font-size: .95rem !important; }
+.campo-checkbox input { width: 18px; height: 18px; accent-color: #B68D40; }
+
+/* === FORM === */
+.form-linha { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .form-linha { grid-template-columns: 1fr; } }
+.form-acoes { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
+.form-msg { font-size: .85rem; margin: 12px 0 0; min-height: 1.2em; }
+.form-msg.sucesso { color: #6fcf7a !important; }
+.form-msg.erro { color: #ff6b6b !important; }
+
+/* === IMAGENS === */
+.lista-imagens { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.linha-imagem { display: flex; gap: 8px; align-items: center; }
+.linha-imagem input { flex: 1; }
+.linha-imagem .btn-remover-img {
+  border: none !important; background: transparent !important;
+  color: #B68D40 !important; font-size: 1.2rem;
+  width: 32px; height: 32px; border-radius: 50%;
+}
+.linha-imagem img.preview {
+  width: 38px; height: 38px; object-fit: cover;
+  border-radius: 8px; border: 1px solid #3a3000 !important;
+}
+
+/* === LISTA DE PRODUTOS === */
+.admin-lista-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.admin-contador { color: #ffffff !important; font-size: .78rem; }
+.lista-produtos { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.item-produto {
+  display: flex; align-items: center; gap: 14px;
+  border: 1px solid #3a3000 !important; border-radius: 12px;
+  padding: 10px 14px; background: #2a2200 !important;
+}
+.item-produto .thumb {
+  width: 52px; height: 52px; border-radius: 9px;
+  object-fit: cover; background: #1e1900 !important;
+  border: 1px solid #3a3000 !important;
+}
+.item-info .nome { color: #f5e6c0 !important; font-weight: 600; font-size: .95rem; }
+.item-info .meta { color: #cccccc !important; font-size: .74rem; display: flex; gap: 10px; flex-wrap: wrap; }
+.item-info .meta .inativo { color: #ff6b6b !important; }
+.item-acoes { display: flex; gap: 8px; }
+.item-acoes button {
+  border: 1.5px solid #B68D40 !important; background: transparent !important;
+  color: #B68D40 !important; border-radius: 999px; padding: 6px 13px; font-size: .78rem; font-weight: 600;
+}
+.item-acoes button:hover { background: #B68D40 !important; color: #0d0d00 !important; }
+.item-acoes .btn-excluir { border-color: #ff6b6b !important; color: #ff6b6b !important; }
+.item-acoes .btn-excluir:hover { background: #ff6b6b !important; color: #0d0d00 !important; }
+.status-msg { color: #cccccc !important; }
+
+/* === ANIMAÇÕES === */
+.campo-email { opacity: 0; transform: translateX(-80px); animation: entraDaEsquerda 0.6s cubic-bezier(.22,1,.36,1) 0.2s forwards; }
+.campo-senha { opacity: 0; transform: translateX(80px); animation: entraDaDireita 0.6s cubic-bezier(.22,1,.36,1) 0.45s forwards; }
+.login-card .btn-full { opacity: 0; transform: translateY(40px); animation: entraDeBaixo 0.6s cubic-bezier(.22,1,.36,1) 0.7s forwards; }
+@keyframes entraDaEsquerda { to { opacity: 1; transform: translateX(0); } }
+@keyframes entraDaDireita { to { opacity: 1; transform: translateX(0); } }
+@keyframes entraDeBaixo { to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body class="admin-body">
