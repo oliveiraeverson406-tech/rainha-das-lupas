@@ -199,4 +199,7 @@ body.admin-body {
 .item-acoes button:hover{ background: var(--ink); color: var(--cream); }
 .item-acoes .btn-excluir{ border-color: var(--burgundy); color: var(--burgundy); }
 .item-acoes .btn-excluir:hover{ background: var(--burgundy); color: var(--cream); }
-   
+
+   .login-sub {
+  text-align: justify;
+   }
