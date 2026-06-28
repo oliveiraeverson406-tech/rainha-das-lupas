@@ -220,8 +220,9 @@ listaProdutos.addEventListener("click", async (e) => {
     btnCancelarEdicao.hidden = false;
     formMsg.textContent = "";
     formMsg.className = "form-msg";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    
   }
+  document.querySelector(".admin-form-card").scrollIntoView({ behavior: "smooth" });
 
   if (e.target.classList.contains("btn-excluir")){
     const confirmar = confirm(`Excluir "${produto.nome}"? Essa ação não pode ser desfeita.`);
