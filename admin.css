@@ -443,3 +443,16 @@ body.admin-body {
   color: #8a7040;
   font-size: .9rem;
 }
+/* === labels maiores e brancas === */
+.campo span {
+  color: #ffffff !important;
+  font-size: .85rem !important;
+}
+.campo-ajuda {
+  color: #cccccc !important;
+  font-size: .85rem !important;
+}
+.eyebrow {
+  color: #ffffff !important;
+  font-size: .85rem !important;
+}
