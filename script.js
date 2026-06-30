@@ -1,5 +1,18 @@
-import { db } from "./firebase-config.js";
-import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+/* ===================== Firebase inline ===================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyDY6_Dt7QMK6Qssf6Di0HLtfi3NfqnGM9k",
+  authDomain: "rainha-das-lupas.firebaseapp.com",
+  projectId: "rainha-das-lupas",
+  storageBucket: "rainha-das-lupas.firebasestorage.app",
+  messagingSenderId: "1066816437022",
+  appId: "1:1066816437022:web:bbda2340018a9ff208670f"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 /* =======================================================================
    EDITE AQUI — número de WhatsApp da loja
@@ -237,7 +250,7 @@ document.addEventListener("keydown", (e) => {
 
 /* clique no card (fora do botão "Perguntar") abre a galeria */
 grid.addEventListener("click", (e) => {
-  if (e.target.closest(".card-zap")) return; // deixa o link do WhatsApp funcionar normalmente
+  if (e.target.closest(".card-zap")) return;
   const card = e.target.closest(".card");
   if (!card) return;
   const produto = produtos.find(p => p.id === card.dataset.id);
