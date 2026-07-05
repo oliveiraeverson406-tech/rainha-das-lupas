@@ -42,7 +42,7 @@ body.admin-body {
   color: #B68D40 !important;
   font-size: 0.82rem !important;
   letter-spacing: 0.16em;
-  font-family: var(--mono);
+  font-family: var(--accent);
 }
 
 .login-card h1 {
@@ -76,7 +76,7 @@ body.admin-body {
 }
 
 .login-card .campo span {
-  font-family: var(--mono);
+  font-family: var(--accent);
   font-size: 0.82rem !important;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -158,7 +158,7 @@ body.admin-body {
 }
 
 .admin-usuario {
-  font-family: var(--mono);
+  font-family: var(--accent);
   font-size: .78rem;
   color: #B68D40;
 }
@@ -211,7 +211,7 @@ body.admin-body {
   text-transform: uppercase;
   color: #B68D40;
   margin: 0 0 4px;
-  font-family: var(--mono);
+  font-family: var(--accent);
 }
 
 /* === CAMPOS DO FORMULÁRIO === */
@@ -223,7 +223,7 @@ body.admin-body {
 }
 
 .campo span {
-  font-family: var(--mono);
+  font-family: var(--accent);
   font-size: .72rem;
   letter-spacing: .05em;
   text-transform: uppercase;
@@ -379,7 +379,7 @@ body.admin-body {
 }
 
 .admin-contador {
-  font-family: var(--mono);
+  font-family: var(--accent);
   font-size: .78rem;
   color: #8a7040;
 }
@@ -421,7 +421,7 @@ body.admin-body {
 }
 
 .item-info .meta {
-  font-family: var(--mono);
+  font-family: var(--accent);
   font-size: .74rem;
   color: #8a7040;
   display: flex;
@@ -466,16 +466,40 @@ body.admin-body {
   font-family: var(--body);
 }
 
-/* === labels maiores e brancas === */
+/* === labels, padrão creme do tema (Noite Dourada) === */
 .campo span {
-  color: #ffffff !important;
+  color: #f5e6c0 !important;
   font-size: .85rem !important;
+  font-family: var(--accent) !important;
 }
 .campo-ajuda {
   color: #cccccc !important;
   font-size: .85rem !important;
+  font-family: var(--body) !important;
 }
 .eyebrow {
-  color: #ffffff !important;
+  color: #f5e6c0 !important;
   font-size: .85rem !important;
+  font-family: var(--accent) !important;
+}
+
+/* === REFORÇO: garante fonte em TODO texto branco do painel === */
+.login-sub,
+.login-erro,
+.campo-checkbox span,
+.status-msg,
+.form-msg,
+.btn-ghost,
+.btn-primary,
+.item-acoes button {
+  font-family: var(--body) !important;
+}
+.admin-usuario,
+.admin-contador,
+.item-info .meta {
+  font-family: var(--accent) !important;
+}
+.brand,
+.item-info .nome {
+  font-family: var(--display) !important;
 }
