@@ -535,6 +535,24 @@ footer h2 { color: #FBF6EA; margin: 6px 0 16px; }
   object-fit: contain;
 }
 
+/* arrastar para girar — funciona junto com setas e miniaturas */
+.galeria-principal { cursor: grab; touch-action: pan-y; }
+.galeria-principal:active { cursor: grabbing; }
+
+.galeria-dica-giro {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13,13,13,0.8);
+  color: #FFB300;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
 .galeria-seta {
   position: absolute;
   top: 50%;

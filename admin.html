@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="admin.css">
@@ -20,6 +20,23 @@ body.admin-body {
   background-attachment: fixed !important;
   min-height: 100vh;
   color: #f5e6c0 !important;
+  font-family: 'Work Sans', sans-serif !important;
+}
+
+/* === TÍTULOS EM FRAUNCES === */
+.login-card h1,
+.admin-form-card h2,
+.admin-lista-card h2,
+.brand {
+  font-family: 'Fraunces', serif !important;
+}
+
+/* === EYEBROW / RÓTULOS EM SPACE MONO === */
+.eyebrow,
+.campo span,
+.admin-usuario,
+.admin-contador {
+  font-family: 'Space Mono', monospace !important;
 }
 
 /* === LOGIN === */
@@ -44,20 +61,22 @@ body.admin-body {
 }
 .login-card .eyebrow { color: #ffffff !important; font-size: 0.82rem !important; }
 .login-card h1 { color: #ffffff !important; font-size: 1.7rem !important; margin: 6px 0 10px; }
-.login-sub { color: #ffffff !important; font-size: 1rem !important; margin: 0 0 22px; text-align: justify; }
+.login-sub { color: #ffffff !important; font-size: 1rem !important; margin: 0 0 22px; text-align: justify; font-family: 'Work Sans', sans-serif !important; }
 .login-card .campo span { color: #ffffff !important; opacity: 1 !important; font-size: 0.85rem !important; }
 .login-card .campo input[type="email"],
 .login-card .campo input[type="password"] {
   background: #2a2200 !important; color: #f5e6c0 !important;
   border: 1.5px solid #3a3000 !important; border-radius: 10px; padding: 11px 14px;
+  font-family: 'Work Sans', sans-serif !important;
 }
 .login-card .campo input:focus { border-color: #B68D40 !important; outline: none; }
 .login-card .btn-primary {
   background:#FFB300 !important; color:#000000!important;
   font-weight: 700 !important; border: none !important; border-radius: 999px; width: 100%;
+  font-family: 'Work Sans', sans-serif !important;
 }
 .login-card .btn-primary:hover { background: #d4a848 !important; }
-.login-erro { color: #ffbb55 !important; }
+.login-erro { color: #ffbb55 !important; font-family: 'Work Sans', sans-serif !important; }
 
 /* === HEADER DO PAINEL === */
 .admin-header {
@@ -85,12 +104,14 @@ body.admin-body {
   color: #ffffff !important;
   border-radius: 999px; padding: 7px 16px;
   font-size: .85rem; font-weight: 600;
+  font-family: 'Work Sans', sans-serif !important;
 }
 .btn-ghost:hover { background: #2a2200 !important; }
 .btn-primary {
   background:#FFB300!important; color: #0d0d00 !important;
   font-weight: 700 !important; border: none !important;
   border-radius: 999px; padding: 11px 24px; cursor: pointer;
+  font-family: 'Work Sans', sans-serif !important;
 }
 .btn-primary:hover { background: #d4a848 !important; }
 .btn-full { width: 100% !important; justify-content: center; }
@@ -122,19 +143,20 @@ body.admin-body {
   background: #2a2200 !important; color: #f5e6c0 !important;
   border: 1.5px solid #3a3000 !important; border-radius: 10px;
   padding: 11px 14px; font-size: .95rem; outline: none;
+  font-family: 'Work Sans', sans-serif !important;
 }
 .campo input:focus, .campo select:focus, .campo textarea:focus { border-color: #B68D40 !important; }
 .campo textarea { resize: vertical; }
-.campo-ajuda { font-size: .85rem !important; color: #cccccc !important; margin: -2px 0 8px; }
+.campo-ajuda { font-size: .85rem !important; color: #cccccc !important; margin: -2px 0 8px; font-family: 'Work Sans', sans-serif !important; }
 .campo-checkbox { display: flex; align-items: center; gap: 10px; margin: 4px 0 22px; color: #ffffff !important; }
-.campo-checkbox span { color: #ffffff !important; text-transform: none !important; font-size: .95rem !important; }
+.campo-checkbox span { color: #ffffff !important; text-transform: none !important; font-size: .95rem !important; font-family: 'Work Sans', sans-serif !important; }
 .campo-checkbox input { width: 18px; height: 18px; accent-color: #FFB300; }
 
 /* === FORM === */
 .form-linha { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
 @media (max-width: 640px) { .form-linha { grid-template-columns: 1fr; } }
 .form-acoes { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
-.form-msg { font-size: .85rem; margin: 12px 0 0; min-height: 1.2em; }
+.form-msg { font-size: .85rem; margin: 12px 0 0; min-height: 1.2em; font-family: 'Work Sans', sans-serif !important; }
 .form-msg.sucesso { color: #6fcf7a !important; }
 .form-msg.erro { color: #ff6b6b !important; }
 
@@ -166,18 +188,19 @@ body.admin-body {
   object-fit: cover; background: #1e1900 !important;
   border: 1px solid #3a3000 !important;
 }
-.item-info .nome { color: #f5e6c0 !important; font-weight: 600; font-size: .95rem; }
-.item-info .meta { color: #cccccc !important; font-size: .74rem; display: flex; gap: 10px; flex-wrap: wrap; }
+.item-info .nome { color: #f5e6c0 !important; font-weight: 600; font-size: .95rem; font-family: 'Fraunces', serif !important; }
+.item-info .meta { color: #cccccc !important; font-size: .74rem; display: flex; gap: 10px; flex-wrap: wrap; font-family: 'Space Mono', monospace !important; }
 .item-info .meta .inativo { color: #ff6b6b !important; }
 .item-acoes { display: flex; gap: 8px; }
 .item-acoes button {
   border: 1.5px solid #B68D40 !important; background: transparent !important;
   color: #B68D40 !important; border-radius: 999px; padding: 6px 13px; font-size: .78rem; font-weight: 600;
+  font-family: 'Work Sans', sans-serif !important;
 }
 .item-acoes button:hover { background: #B68D40 !important; color: #0d0d00 !important; }
 .item-acoes .btn-excluir { border-color: #ff6b6b !important; color: #ff6b6b !important; }
 .item-acoes .btn-excluir:hover { background: #ff6b6b !important; color: #0d0d00 !important; }
-.status-msg { color: #cccccc !important; }
+.status-msg { color: #cccccc !important; font-family: 'Work Sans', sans-serif !important; }
 
 /* === ANIMAÇÕES === */
 .campo-email { opacity: 0; transform: translateX(-80px); animation: entraDaEsquerda 0.6s cubic-bezier(.22,1,.36,1) 0.2s forwards; }

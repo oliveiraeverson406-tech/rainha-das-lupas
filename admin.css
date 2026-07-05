@@ -2,12 +2,21 @@
    PAINEL ADMIN — Tema Noite Dourada (login + painel)
 ======================================================= */
 
+/* === VARIÁVEIS DE FONTE (Noite Dourada) === */
+:root {
+  --display: 'Fraunces', serif;
+  --body: 'Work Sans', sans-serif;
+  --mono: 'Space Mono', monospace;
+  --accent: 'Playfair Display', serif;
+}
+
 /* === FUNDO GERAL === */
 body.admin-body {
   background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 100%) !important;
   background-attachment: fixed !important;
   min-height: 100vh;
   color: #f5e6c0;
+  font-family: var(--body);
 }
 
 /* === TELA DE LOGIN === */
@@ -33,11 +42,12 @@ body.admin-body {
   color: #B68D40 !important;
   font-size: 0.82rem !important;
   letter-spacing: 0.16em;
+  font-family: var(--mono);
 }
 
 .login-card h1 {
   color: #FFB300 !important;
-  font-family:"Frauces";serif;
+  font-family: var(--display);
   font-size: 1.7rem;
   margin: 6px 0 10px;
 }
@@ -47,6 +57,7 @@ body.admin-body {
   color: #c8b070 !important;
   margin: 0 0 22px;
   text-align: justify;
+  font-family: var(--body);
 }
 
 .login-erro {
@@ -54,6 +65,7 @@ body.admin-body {
   font-size: .85rem;
   margin: 12px 0 0;
   min-height: 1.2em;
+  font-family: var(--body);
 }
 
 .login-card .campo {
@@ -99,6 +111,7 @@ body.admin-body {
   border: none !important;
   border-radius: 999px;
   width: 100%;
+  font-family: var(--body);
 }
 
 .login-card .btn-primary:hover {
@@ -126,7 +139,7 @@ body.admin-body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--mono);
+  font-family: var(--display);
   font-size: 0.9rem;
   color: #f5e6c0;
   text-decoration: none;
@@ -160,6 +173,7 @@ body.admin-body {
   font-size: .85rem;
   font-weight: 600;
   cursor: pointer;
+  font-family: var(--body);
 }
 
 .btn-ghost:hover {
@@ -197,6 +211,7 @@ body.admin-body {
   text-transform: uppercase;
   color: #B68D40;
   margin: 0 0 4px;
+  font-family: var(--mono);
 }
 
 /* === CAMPOS DO FORMULÁRIO === */
@@ -246,6 +261,7 @@ body.admin-body {
   font-size: .8rem;
   color: #8a7040;
   margin: -2px 0 8px;
+  font-family: var(--body);
 }
 
 .campo-checkbox {
@@ -255,6 +271,7 @@ body.admin-body {
   margin: 4px 0 22px;
   font-size: .92rem;
   color: #f5e6c0;
+  font-family: var(--body);
 }
 
 .campo-checkbox input {
@@ -275,6 +292,7 @@ body.admin-body {
   border-radius: 999px;
   padding: 11px 24px;
   cursor: pointer;
+  font-family: var(--body);
 }
 
 .btn-primary:hover {
@@ -346,6 +364,7 @@ body.admin-body {
   font-size: .85rem;
   margin: 12px 0 0;
   min-height: 1.2em;
+  font-family: var(--body);
 }
 
 .form-msg.sucesso { color: #6fcf7a; }
@@ -398,6 +417,7 @@ body.admin-body {
   font-weight: 600;
   font-size: .95rem;
   color: #f5e6c0;
+  font-family: var(--display);
 }
 
 .item-info .meta {
@@ -422,6 +442,7 @@ body.admin-body {
   font-size: .78rem;
   font-weight: 600;
   cursor: pointer;
+  font-family: var(--body);
 }
 
 .item-acoes button:hover {
@@ -442,7 +463,9 @@ body.admin-body {
 .status-msg {
   color: #8a7040;
   font-size: .9rem;
+  font-family: var(--body);
 }
+
 /* === labels maiores e brancas === */
 .campo span {
   color: #ffffff !important;
