@@ -1,3 +1,25 @@
+/* =======================================================
+   MODO DEBUG TEMPORÁRIO — mostra qualquer erro na tela
+   (remover este bloco depois que o bug for resolvido)
+======================================================= */
+(function(){
+  const banner = document.createElement("div");
+  banner.id = "debug-banner";
+  banner.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:99999;background:#ff3333;color:#fff;padding:14px;font-family:monospace;font-size:13px;white-space:pre-wrap;display:none;";
+  document.addEventListener("DOMContentLoaded", () => document.body.appendChild(banner));
+  function mostrarErro(msg){
+    if (!document.body.contains(banner)) document.body.appendChild(banner);
+    banner.style.display = "block";
+    banner.textContent = "ERRO CAPTURADO:\n" + msg;
+  }
+  window.addEventListener("error", (e) => {
+    mostrarErro((e.message || "erro desconhecido") + "\nArquivo: " + (e.filename || "?") + "\nLinha: " + (e.lineno || "?"));
+  });
+  window.addEventListener("unhandledrejection", (e) => {
+    mostrarErro("Promise rejeitada: " + (e.reason && e.reason.message ? e.reason.message : e.reason));
+  });
+})();
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
@@ -16,8 +38,6 @@ const db = getFirestore(app);
 
 /* =======================================================================
    EDITE AQUI — número de WhatsApp da loja
-   Formato: código do país + DDD + número, só números (sem espaço, traço ou +)
-   Exemplo Brasil/Manaus: "5592912345678"
 ======================================================================= */
 const WHATSAPP_NUMERO = "5592900000000";
 
@@ -79,7 +99,7 @@ async function carregarProdutos(){
     aplicarFiltros();
   }catch(erro){
     console.error("Erro ao carregar produtos:", erro);
-    statusMsg.textContent = "Não foi possível carregar a coleção agora. Tente novamente em instantes.";
+    statusMsg.textContent = "Não foi possível carregar a coleção agora. Erro: " + (erro && erro.message ? erro.message : erro);
     statusMsg.classList.add("erro", "show");
   }
 }
@@ -147,7 +167,7 @@ const msgGeral = "Olá! Vim pelo site da Rainha das Lupas e gostaria de mais inf
 /* lupa interativa do hero */
 const stage = document.getElementById("lensStage");
 const lens = document.getElementById("lens");
-if (stage && window.matchMedia("(hover: hover)").matches){
+if (stage && lens && window.matchMedia("(hover: hover)").matches){
   stage.addEventListener("mousemove", (e) => {
     const rect = stage.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -217,32 +237,36 @@ function renderizarMiniaturas(){
   ).join("");
 }
 
-galeriaMiniaturas.addEventListener("click", (e) => {
-  const img = e.target.closest("img[data-i]");
-  if (!img) return;
-  indiceAtual = Number(img.dataset.i);
-  renderizarImagemAtual();
-  renderizarMiniaturas();
-});
+if (galeriaMiniaturas){
+  galeriaMiniaturas.addEventListener("click", (e) => {
+    const img = e.target.closest("img[data-i]");
+    if (!img) return;
+    indiceAtual = Number(img.dataset.i);
+    renderizarImagemAtual();
+    renderizarMiniaturas();
+  });
+}
 
-setaEsq.addEventListener("click", () => {
+if (setaEsq) setaEsq.addEventListener("click", () => {
   indiceAtual = (indiceAtual - 1 + imagensAtuais.length) % imagensAtuais.length;
   renderizarImagemAtual();
   renderizarMiniaturas();
 });
 
-setaDir.addEventListener("click", () => {
+if (setaDir) setaDir.addEventListener("click", () => {
   indiceAtual = (indiceAtual + 1) % imagensAtuais.length;
   renderizarImagemAtual();
   renderizarMiniaturas();
 });
 
-galeriaFechar.addEventListener("click", fecharGaleria);
-galeriaOverlay.addEventListener("click", (e) => {
-  if (e.target === galeriaOverlay) fecharGaleria();
-});
+if (galeriaFechar) galeriaFechar.addEventListener("click", fecharGaleria);
+if (galeriaOverlay){
+  galeriaOverlay.addEventListener("click", (e) => {
+    if (e.target === galeriaOverlay) fecharGaleria();
+  });
+}
 document.addEventListener("keydown", (e) => {
-  if (!galeriaOverlay.classList.contains("aberta")) return;
+  if (!galeriaOverlay || !galeriaOverlay.classList.contains("aberta")) return;
   if (e.key === "Escape") fecharGaleria();
   if (e.key === "ArrowLeft") setaEsq.click();
   if (e.key === "ArrowRight") setaDir.click();
