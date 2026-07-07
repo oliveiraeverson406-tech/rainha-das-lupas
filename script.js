@@ -191,6 +191,8 @@ const galeriaCat = document.getElementById("galeriaCat");
 const galeriaFechar = document.getElementById("galeriaFechar");
 const setaEsq = document.getElementById("setaEsq");
 const setaDir = document.getElementById("setaDir");
+if (setaEsq) setaEsq.style.display = "none";
+if (setaDir) setaDir.style.display = "none";
 
 let imagensAtuais = [];
 let indiceAtual = 0;
@@ -229,8 +231,8 @@ function renderizarImagemAtual(){
   galeriaImgPrincipal.src = imagensAtuais[indiceAtual];
   galeriaImgPrincipal.alt = galeriaNome.textContent;
   // Setas removidas da interface: a navegação agora é só por arraste (1 dedo) e pinça (zoom)
-  setaEsq.hidden = true;
-  setaDir.hidden = true;
+  setaEsq.style.display = "none";
+  setaDir.style.display = "none";
 }
 
 function renderizarMiniaturas(){
