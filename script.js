@@ -56,10 +56,10 @@ const nomesCategoria = {
 };
 
 const corCategoria = {
-  sol: "#6B1E2E",
+  sol: "#E6435C",
   grau: "#4A6670",
   lupa: "#B68D40",
-  acessorio: "#2B1B12",
+  acessorio: "#FFFFFF",
 };
 
 function iconeCategoria(categoria){
@@ -412,4 +412,3 @@ grid.addEventListener("click", (e) => {
 
 /* ===================== inicialização ===================== */
 carregarProdutos();
-     
