@@ -275,26 +275,20 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* =======================================================================
-   ARRASTAR PARA GIRAR (efeito pseudo-3D)
-   — o usuário arrasta o dedo/mouse sobre a foto principal e ela
-   troca de ângulo, simulando estar girando o produto.
+   1 DEDO GIRA ENTRE ÂNGULOS + 2 DEDOS (PINÇA) DÃO ZOOM
 ======================================================================= */
+const SENSIBILIDADE_PX = 40; // px de arraste equivalentes a 1 "giro"
+const pointersAtivos = new Map();
 let arrastando = false;
 let ultimoX = 0;
-const SENSIBILIDADE_PX = 40; // quantos px de arraste equivalem a 1 "giro"
+let pinchDistInicial = 0;
+let escalaAtual = 1;
 
 function girarPara(direcao){
   // direcao: 1 = próximo ângulo, -1 = ângulo anterior
   indiceAtual = (indiceAtual + direcao + imagensAtuais.length) % imagensAtuais.length;
   renderizarImagemAtual();
   renderizarMiniaturas();
-}
-
-function iniciarArraste(x){
-  if (imagensAtuais.length < 2) return;
-  arrastando = true;
-  ultimoX = x;
-  galeriaImgPrincipal.classList.add("arrastando");
 }
 
 function moverArraste(x){
@@ -306,24 +300,77 @@ function moverArraste(x){
   }
 }
 
-function pararArraste(){
-  arrastando = false;
-  if (galeriaImgPrincipal) galeriaImgPrincipal.classList.remove("arrastando");
+function distanciaEntre(p1, p2){
+  return Math.hypot(p1.x - p2.x, p1.y - p2.y);
+}
+
+function aplicarEscala(escala){
+  galeriaImgPrincipal.style.transform = `scale(${escala})`;
+}
+
+function resetarEscala(){
+  if (!galeriaImgPrincipal) return;
+  escalaAtual = 1;
+  galeriaImgPrincipal.style.transition = "transform .25s ease";
+  aplicarEscala(1);
+  setTimeout(() => { if (galeriaImgPrincipal) galeriaImgPrincipal.style.transition = ""; }, 250);
+}
+
+function finalizarPonteiro(e){
+  pointersAtivos.delete(e.pointerId);
+
+  if (pointersAtivos.size === 0){
+    arrastando = false;
+    if (escalaAtual !== 1) resetarEscala();
+  } else if (pointersAtivos.size === 1){
+    // ainda sobrou 1 dedo na tela: retoma o giro a partir da posição atual dele
+    const restante = [...pointersAtivos.values()][0];
+    arrastando = true;
+    ultimoX = restante.x;
+    if (escalaAtual !== 1) resetarEscala();
+  }
 }
 
 if (galeriaImgPrincipal){
   galeriaImgPrincipal.draggable = false;
-  galeriaImgPrincipal.style.touchAction = "pan-y"; // trava o gesto horizontal, deixa rolar a página na vertical
+  galeriaImgPrincipal.style.touchAction = "none"; // controlamos gesto e zoom manualmente
   galeriaImgPrincipal.style.cursor = "grab";
   galeriaImgPrincipal.style.userSelect = "none";
 
   galeriaImgPrincipal.addEventListener("pointerdown", (e) => {
-    iniciarArraste(e.clientX);
     galeriaImgPrincipal.setPointerCapture(e.pointerId);
+    pointersAtivos.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (pointersAtivos.size === 1){
+      arrastando = imagensAtuais.length > 1;
+      ultimoX = e.clientX;
+    } else if (pointersAtivos.size === 2){
+      arrastando = false; // pausa o giro enquanto belisca pra dar zoom
+      const [p1, p2] = [...pointersAtivos.values()];
+      pinchDistInicial = distanciaEntre(p1, p2);
+    }
   });
-  galeriaImgPrincipal.addEventListener("pointermove", (e) => moverArraste(e.clientX));
-  galeriaImgPrincipal.addEventListener("pointerup", pararArraste);
-  galeriaImgPrincipal.addEventListener("pointercancel", pararArraste);
+
+  galeriaImgPrincipal.addEventListener("pointermove", (e) => {
+    if (!pointersAtivos.has(e.pointerId)) return;
+    pointersAtivos.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (pointersAtivos.size === 2){
+      const [p1, p2] = [...pointersAtivos.values()];
+      const distAtual = distanciaEntre(p1, p2);
+      if (pinchDistInicial > 0){
+        let novaEscala = distAtual / pinchDistInicial;
+        novaEscala = Math.min(2.5, Math.max(1, novaEscala));
+        escalaAtual = novaEscala;
+        aplicarEscala(escalaAtual);
+      }
+    } else if (pointersAtivos.size === 1){
+      moverArraste(e.clientX);
+    }
+  });
+
+  galeriaImgPrincipal.addEventListener("pointerup", finalizarPonteiro);
+  galeriaImgPrincipal.addEventListener("pointercancel", finalizarPonteiro);
   galeriaImgPrincipal.addEventListener("dragstart", (e) => e.preventDefault());
 }
 
@@ -334,7 +381,7 @@ function mostrarDicaArraste(){
   dicaJaMostrada = true;
 
   const dica = document.createElement("div");
-  dica.textContent = "↔ Arraste para girar";
+  dica.textContent = "☝ Arraste para girar · ✌ Belisque para dar zoom";
   dica.style.cssText = `
     position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
     background:rgba(13,13,13,0.85); color:#FFB300; font-family:'Work Sans',sans-serif;
