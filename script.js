@@ -228,9 +228,9 @@ function renderizarImagemAtual(){
   }
   galeriaImgPrincipal.src = imagensAtuais[indiceAtual];
   galeriaImgPrincipal.alt = galeriaNome.textContent;
-  const mostrarSetas = imagensAtuais.length > 1;
-  setaEsq.hidden = !mostrarSetas;
-  setaDir.hidden = !mostrarSetas;
+  // Setas removidas da interface: a navegação agora é só por arraste (1 dedo) e pinça (zoom)
+  setaEsq.hidden = true;
+  setaDir.hidden = true;
 }
 
 function renderizarMiniaturas(){
@@ -410,3 +410,4 @@ grid.addEventListener("click", (e) => {
 
 /* ===================== inicialização ===================== */
 carregarProdutos();
+     
