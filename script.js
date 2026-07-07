@@ -210,6 +210,8 @@ function abrirGaleria(produto){
 
   galeriaOverlay.classList.add("aberta");
   document.body.style.overflow = "hidden";
+
+  if (imagensAtuais.length > 1) mostrarDicaArraste();
 }
 
 function fecharGaleria(){
@@ -271,6 +273,84 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") setaEsq.click();
   if (e.key === "ArrowRight") setaDir.click();
 });
+
+/* =======================================================================
+   ARRASTAR PARA GIRAR (efeito pseudo-3D)
+   — o usuário arrasta o dedo/mouse sobre a foto principal e ela
+   troca de ângulo, simulando estar girando o produto.
+======================================================================= */
+let arrastando = false;
+let ultimoX = 0;
+const SENSIBILIDADE_PX = 40; // quantos px de arraste equivalem a 1 "giro"
+
+function girarPara(direcao){
+  // direcao: 1 = próximo ângulo, -1 = ângulo anterior
+  indiceAtual = (indiceAtual + direcao + imagensAtuais.length) % imagensAtuais.length;
+  renderizarImagemAtual();
+  renderizarMiniaturas();
+}
+
+function iniciarArraste(x){
+  if (imagensAtuais.length < 2) return;
+  arrastando = true;
+  ultimoX = x;
+  galeriaImgPrincipal.classList.add("arrastando");
+}
+
+function moverArraste(x){
+  if (!arrastando) return;
+  const delta = x - ultimoX;
+  if (Math.abs(delta) >= SENSIBILIDADE_PX){
+    girarPara(delta < 0 ? 1 : -1);
+    ultimoX = x;
+  }
+}
+
+function pararArraste(){
+  arrastando = false;
+  if (galeriaImgPrincipal) galeriaImgPrincipal.classList.remove("arrastando");
+}
+
+if (galeriaImgPrincipal){
+  galeriaImgPrincipal.draggable = false;
+  galeriaImgPrincipal.style.touchAction = "pan-y"; // trava o gesto horizontal, deixa rolar a página na vertical
+  galeriaImgPrincipal.style.cursor = "grab";
+  galeriaImgPrincipal.style.userSelect = "none";
+
+  galeriaImgPrincipal.addEventListener("pointerdown", (e) => {
+    iniciarArraste(e.clientX);
+    galeriaImgPrincipal.setPointerCapture(e.pointerId);
+  });
+  galeriaImgPrincipal.addEventListener("pointermove", (e) => moverArraste(e.clientX));
+  galeriaImgPrincipal.addEventListener("pointerup", pararArraste);
+  galeriaImgPrincipal.addEventListener("pointercancel", pararArraste);
+  galeriaImgPrincipal.addEventListener("dragstart", (e) => e.preventDefault());
+}
+
+/* pequena dica visual "arraste para girar" na primeira vez que abre */
+let dicaJaMostrada = false;
+function mostrarDicaArraste(){
+  if (dicaJaMostrada) return;
+  dicaJaMostrada = true;
+
+  const dica = document.createElement("div");
+  dica.textContent = "↔ Arraste para girar";
+  dica.style.cssText = `
+    position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
+    background:rgba(13,13,13,0.85); color:#FFB300; font-family:'Work Sans',sans-serif;
+    font-size:13px; padding:6px 14px; border-radius:20px; pointer-events:none;
+    z-index:10; opacity:0; transition:opacity .3s ease;
+  `;
+  const container = galeriaImgPrincipal.parentElement || galeriaOverlay;
+  container.style.position = container.style.position || "relative";
+  container.appendChild(dica);
+
+  requestAnimationFrame(() => { dica.style.opacity = "1"; });
+  setTimeout(() => {
+    dica.style.opacity = "0";
+    setTimeout(() => dica.remove(), 400);
+  }, 2200);
+}
 
 /* clique no card (fora do botão "Perguntar") abre a galeria */
 grid.addEventListener("click", (e) => {
