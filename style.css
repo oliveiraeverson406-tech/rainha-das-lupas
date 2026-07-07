@@ -351,7 +351,7 @@ header {
 }
 
 .card-cat {
-  font-family: "Space Mono", monospace;
+  font-family: "Fraunces", serif;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -598,3 +598,4 @@ footer h2 { color: #FBF6EA; margin: 6px 0 16px; }
   transition: border-color 0.15s;
 }
 .galeria-miniaturas img.ativa { border-color: #B68D40; }
+   
