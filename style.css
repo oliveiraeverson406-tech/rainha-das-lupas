@@ -522,7 +522,7 @@ footer h2 { color: #FBF6EA; margin: 6px 0 16px; }
   position: relative;
   aspect-ratio: 4/3;
   background: #f0ebe0;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
   margin-bottom: 16px;
   display: flex;
