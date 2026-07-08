@@ -322,6 +322,7 @@ header {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+   border-radius: 16px 16px 0 0;
 }
 .card-art img {
   width: 100%;
