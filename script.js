@@ -41,6 +41,22 @@ const db = getFirestore(app);
 ======================================================================= */
 const WHATSAPP_NUMERO = "5592900000000";
 
+/* =======================================================================
+   PADRONIZAÇÃO DE IMAGENS (Cloudinary)
+   Deixa todas as fotos com o mesmo tamanho/proporção, sem cortar o produto.
+======================================================================= */
+function padronizarImagem(url, tamanho = 800){
+  if (!url) return url;
+  // Só aplica em URLs do Cloudinary (evita quebrar links de outras origens)
+  if (!url.includes("res.cloudinary.com")) return url;
+  // Já tem transformação aplicada? não duplica.
+  if (url.includes("/upload/w_")) return url;
+  return url.replace(
+    "/upload/",
+    `/upload/w_${tamanho},h_${tamanho},c_pad,b_auto/`
+  );
+}
+
 /* ===================== referências de elementos ===================== */
 const grid = document.getElementById("grid");
 const vazio = document.getElementById("vazio");
@@ -108,7 +124,7 @@ async function carregarProdutos(){
 function cardHTML(produto){
   const imagens = Array.isArray(produto.imagens) ? produto.imagens.filter(Boolean) : [];
   const arte = imagens.length
-    ? `<img src="${imagens[0]}" alt="${produto.nome}">`
+    ? `<img src="${padronizarImagem(imagens[0])}" alt="${produto.nome}">`
     : iconeCategoria(produto.categoria);
   const badge = imagens.length > 1
     ? `<span class="badge-fotos">📷 ${imagens.length} fotos</span>`
@@ -228,7 +244,7 @@ function renderizarImagemAtual(){
     setaDir.hidden = true;
     return;
   }
-  galeriaImgPrincipal.src = imagensAtuais[indiceAtual];
+  galeriaImgPrincipal.src = padronizarImagem(imagensAtuais[indiceAtual]);
   galeriaImgPrincipal.alt = galeriaNome.textContent;
   // Setas removidas da interface: a navegação agora é só por arraste (1 dedo) e pinça (zoom)
   setaEsq.style.display = "none";
@@ -237,7 +253,7 @@ function renderizarImagemAtual(){
 
 function renderizarMiniaturas(){
   galeriaMiniaturas.innerHTML = imagensAtuais.map((src, i) =>
-    `<img src="${src}" alt="ângulo ${i + 1}" data-i="${i}" class="${i === indiceAtual ? "ativa" : ""}">`
+    `<img src="${padronizarImagem(src, 150)}" alt="ângulo ${i + 1}" data-i="${i}" class="${i === indiceAtual ? "ativa" : ""}">`
   ).join("");
 }
 
@@ -412,4 +428,3 @@ grid.addEventListener("click", (e) => {
 
 /* ===================== inicialização ===================== */
 carregarProdutos();
-   
