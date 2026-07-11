@@ -353,7 +353,7 @@ header {
 
 .card-cat {
   font-family: "Fraunces", serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   display: block;
@@ -371,7 +371,7 @@ header {
   font-size: 1rem;
   color: #7a6050;
   margin-bottom: 12px;
-  line-height: 1.45;
+  line-height: 1.80;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -387,7 +387,7 @@ header {
 
 .card-preco {
   font-family: "Fraunces", serif;
-  font-size: 1.35rem;
+  font-size: 1.85rem;
   font-weight: 700;
   color: #6B1E2E;
 }
