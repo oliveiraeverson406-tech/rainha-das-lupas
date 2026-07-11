@@ -353,7 +353,7 @@ header {
 
 .card-cat {
   font-family: "Fraunces", serif;
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   display: block;
@@ -368,7 +368,7 @@ header {
 }
 
 .card-desc {
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: #7a6050;
   margin-bottom: 12px;
   line-height: 1.45;
@@ -387,7 +387,7 @@ header {
 
 .card-preco {
   font-family: "Fraunces", serif;
-  font-size: 1.05rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #6B1E2E;
 }
@@ -599,4 +599,3 @@ footer h2 { color: #FBF6EA; margin: 6px 0 16px; }
   transition: border-color 0.15s;
 }
 .galeria-miniaturas img.ativa { border-color: #B68D40; }
-   
