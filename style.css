@@ -385,7 +385,7 @@ header {
   gap: 8px;
 }
 
-.card-preco { font-family: "Space Mono", monospace; font-size: 1.25rem; font-weight: 700; color: #FFFFFF; }
+.card-preco { font-family: .card-preco { font-family: "Poppins", sans-serif; font-size: 1.3rem; font-weight: 900; color: #FFFFFF; } font-size: 1.25rem; font-weight: 700; color: #FFFFFF; }
 
 .card-zap {
   background: #B68D40;
