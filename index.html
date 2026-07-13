@@ -193,38 +193,48 @@ header {
 }
 
 /* lupa interativa — oculta no mobile */
-.lens-stage {
+.hero-slideshow {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
-  background: #1a1a1a;
+  background: #fff;
   border-radius: 20px;
   overflow: hidden;
-  cursor: none;
   display: none;
 }
-@media (min-width: 769px) { .lens-stage { display: block; } }
-.stage-label {
+@media (min-width: 769px) { .hero-slideshow { display: block; } }
+.hero-slide {
   position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.4);
-  white-space: nowrap;
-  font-family: "Space Mono", monospace;
-  letter-spacing: 0.08em;
-  pointer-events: none;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  display: flex;
+  flex-direction: column;
 }
-.lens {
-  position: absolute;
-  width: 150px; height: 150px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,179,0,0.6);
-  pointer-events: none;
-  display: none;
+.hero-slide.ativo { opacity: 1; }
+.hero-slide img {
+  flex: 1;
+  width: 100%;
+  object-fit: contain;
+  background: #fff;
 }
-.lens-stage:hover .lens { display: block; }
+.hero-slide-info {
+  background: #1a1200;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hero-slide-info h4 {
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+  color: #FBF6EA;
+}
+.hero-slide-info span {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  color: #FFB300;
+}
 
 /* =============================================
    COLEÇÃO
