@@ -113,6 +113,10 @@ async function carregarProdutos(){
 
     statusMsg.classList.remove("show");
     aplicarFiltros();
+    montarHeroSlideshow();
+
+    
+    
   }catch(erro){
     console.error("Erro ao carregar produtos:", erro);
     statusMsg.textContent = "Não foi possível carregar a coleção agora. Erro: " + (erro && erro.message ? erro.message : erro);
@@ -180,18 +184,34 @@ const msgGeral = "Olá! Vim pelo site da Rainha das Lupas e gostaria de mais inf
   if (el) el.href = linkWhatsApp(msgGeral);
 });
 
-/* lupa interativa do hero */
-const stage = document.getElementById("lensStage");
-const lens = document.getElementById("lens");
-if (stage && lens && window.matchMedia("(hover: hover)").matches){
-  stage.addEventListener("mousemove", (e) => {
-    const rect = stage.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    lens.style.left = `${x - 75}px`;
-    lens.style.top = `${y - 75}px`;
-    lens.style.backgroundPosition = `${-(x * 2.5 - 75)}px ${-(y * 2.5 - 75)}px`;
-  });
+/* slideshow automático do hero — mostra os produtos reais */
+const heroSlideshow = document.getElementById("heroSlideshow");
+let heroSlideIndex = 0;
+let heroSlideTimer = null;
+
+function montarHeroSlideshow(){
+  if (!heroSlideshow || !produtos.length) return;
+
+  const destaques = produtos.filter(p => p.imagens && p.imagens.length).slice(0, 6);
+  if (!destaques.length) return;
+
+  heroSlideshow.innerHTML = destaques.map((p, i) => `
+    <div class="hero-slide ${i === 0 ? "ativo" : ""}">
+      <img src="${padronizarImagem(p.imagens[0])}" alt="${p.nome}">
+      <div class="hero-slide-info">
+        <h4>${p.nome}</h4>
+        <span>${formatarPreco(p.preco)}</span>
+      </div>
+    </div>
+  `).join("");
+
+  clearInterval(heroSlideTimer);
+  heroSlideTimer = setInterval(() => {
+    const slides = heroSlideshow.querySelectorAll(".hero-slide");
+    slides[heroSlideIndex].classList.remove("ativo");
+    heroSlideIndex = (heroSlideIndex + 1) % slides.length;
+    slides[heroSlideIndex].classList.add("ativo");
+  }, 3500);
 }
 
 /* =======================================================================
