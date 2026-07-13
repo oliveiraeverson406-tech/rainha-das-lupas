@@ -385,12 +385,7 @@ header {
   gap: 8px;
 }
 
-.card-preco {
-  font-family: "Fraunces", serif;
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: #6B1E2E;
-}
+.card-preco { font-family: "Space Mono", monospace; font-size: 1.25rem; font-weight: 700; color: #FFB300; }
 
 .card-zap {
   background: #B68D40;
