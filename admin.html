@@ -155,6 +155,8 @@ body.admin-body {
 /* === FORM === */
 .form-linha { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
 @media (max-width: 640px) { .form-linha { grid-template-columns: 1fr; } }
+.form-linha-estoque { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .form-linha-estoque { grid-template-columns: 1fr; } }
 .form-acoes { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
 .form-msg { font-size: .85rem; margin: 12px 0 0; min-height: 1.2em; font-family: 'Work Sans', sans-serif !important; }
 .form-msg.sucesso { color: #6fcf7a !important; }
@@ -191,6 +193,7 @@ body.admin-body {
 .item-info .nome { color: #f5e6c0 !important; font-weight: 600; font-size: .95rem; font-family: 'Fraunces', serif !important; }
 .item-info .meta { color: #cccccc !important; font-size: .74rem; display: flex; gap: 10px; flex-wrap: wrap; font-family: 'Playfair Display', serif !important; }
 .item-info .meta .inativo { color: #ff6b6b !important; }
+.item-info .meta .esgotado { color: #ff6b6b !important; }
 .item-acoes { display: flex; gap: 8px; }
 .item-acoes button {
   border: 1.5px solid #B68D40 !important; background: transparent !important;
@@ -285,6 +288,14 @@ body.admin-body {
           <span>Descrição curta</span>
           <textarea id="campoDescricao" rows="2" placeholder="Frase curta que aparece no card do produto"></textarea>
         </label>
+
+        <div class="form-linha-estoque">
+          <label class="campo">
+            <span>Quantidade em estoque</span>
+            <input type="number" id="campoQuantidade" step="1" min="0" placeholder="Ex: 5">
+          </label>
+        </div>
+        <p class="campo-ajuda">Quando a quantidade chegar a 0, o produto some automaticamente do site (mesmo estando marcado como "ativo"). Deixe em branco se não quiser controlar estoque desse produto.</p>
 
         <div class="campo">
           <span>Fotos do produto (link de cada imagem, um ângulo por foto)</span>
