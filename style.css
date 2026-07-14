@@ -317,7 +317,7 @@ header {
 }
 .card-nome { font-family: "Fraunces", serif; font-size: 1rem; margin-bottom: 4px; color: #FBF6EA; }
 .card-desc {
-  font-size: 0.82rem; color: #a8967a; margin-bottom: 12px; line-height: 1.45;
+  font-size: 0.82rem; color: #FFFFFF; margin-bottom: 12px; line-height: 1.45;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   font-weight: 700;
   font-family: 'Playfair Display', serif;
