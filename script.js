@@ -152,7 +152,7 @@ function cardHTML(produto){
     ? `<span class="badge-fotos">📷 ${imagens.length} fotos</span>`
     : "";
   const badgeEstoque = temEstoqueBaixo(produto)
-    ? `<span class="badge-estoque" style="position:absolute;top:10px;left:10px;background:#B68D40;color:#0d0d0d;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;z-index:2;">Últimas unidades</span>`
+    ? `<span class="badge-estoque" style="position:absolute;top:10px;left:10px;background:#0d0d0d;color:#FFFFFF;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;z-index:2;">Últimas unidades</span>`
     : "";
   const msg = `Olá! Tenho interesse no produto "${produto.nome}" (${formatarPreco(produto.preco)}).`;
 
