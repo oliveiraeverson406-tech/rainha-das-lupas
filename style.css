@@ -323,7 +323,7 @@ header {
   font-family: 'Georgia', serif;
 }
 .card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.card-preco { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #FFFFFF; }
+.card-preco { font-family: 'Georgia', serif; font-size: 1.05rem; font-weight: 700; color: #FFFFFF; }
 .card-zap {
   background:#FFB300; color: #0d0d0d;
   font-size: 0.78rem; font-weight: 600;
