@@ -30,6 +30,7 @@ const campoNome = document.getElementById("campoNome");
 const campoCategoria = document.getElementById("campoCategoria");
 const campoPreco = document.getElementById("campoPreco");
 const campoDescricao = document.getElementById("campoDescricao");
+const campoQuantidade = document.getElementById("campoQuantidade");
 const campoAtivo = document.getElementById("campoAtivo");
 const listaImagens = document.getElementById("listaImagens");
 const btnAddImagem = document.getElementById("btnAddImagem");
@@ -129,6 +130,21 @@ produtoForm.addEventListener("submit", async (e) => {
     ativo: campoAtivo.checked,
   };
 
+  // Quantidade em estoque: campo opcional.
+  // Se ficar em branco, o produto não fica sujeito a controle de estoque.
+  const quantidadeTexto = campoQuantidade.value.trim();
+  if (quantidadeTexto !== ""){
+    const quantidadeNum = Number(quantidadeTexto);
+    if (isNaN(quantidadeNum) || quantidadeNum < 0){
+      formMsg.textContent = "Quantidade em estoque inválida.";
+      formMsg.classList.add("erro");
+      return;
+    }
+    dados.quantidade = quantidadeNum;
+  } else {
+    dados.quantidade = null;
+  }
+
   if (!dados.nome || !dados.categoria || isNaN(dados.preco)){
     formMsg.textContent = "Preencha nome, categoria e preço.";
     formMsg.classList.add("erro");
@@ -177,6 +193,12 @@ async function carregarProdutos(){
   }
 }
 
+function metaEstoque(p){
+  if (p.quantidade === undefined || p.quantidade === null) return "";
+  if (Number(p.quantidade) <= 0) return `<span class="esgotado">esgotado</span>`;
+  return `<span>${Number(p.quantidade)} em estoque</span>`;
+}
+
 function renderizarLista(){
   listaProdutos.innerHTML = produtosCache.map(p => {
     const imagens = Array.isArray(p.imagens) ? p.imagens.filter(Boolean) : [];
@@ -190,6 +212,7 @@ function renderizarLista(){
             <span>${nomesCategoria[p.categoria] || p.categoria}</span>
             <span>${Number(p.preco || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</span>
             <span>${imagens.length} foto${imagens.length === 1 ? "" : "s"}</span>
+            ${metaEstoque(p)}
             ${p.ativo ? "" : `<span class="inativo">oculto no site</span>`}
           </div>
         </div>
@@ -213,6 +236,7 @@ listaProdutos.addEventListener("click", async (e) => {
     campoCategoria.value = produto.categoria || "sol";
     campoPreco.value = produto.preco || "";
     campoDescricao.value = produto.descricao || "";
+    campoQuantidade.value = (produto.quantidade === undefined || produto.quantidade === null) ? "" : produto.quantidade;
     campoAtivo.checked = !!produto.ativo;
     preencherImagensNoForm(Array.isArray(produto.imagens) ? produto.imagens : []);
     formModo.textContent = "Editando produto";
