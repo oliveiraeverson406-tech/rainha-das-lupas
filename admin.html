@@ -78,6 +78,27 @@ body.admin-body {
 .login-card .btn-primary:hover { background: #d4a848 !important; }
 .login-erro { color: #ffbb55 !important; font-family: 'Work Sans', sans-serif !important; }
 
+/* === LOGIN EM TELAS GRANDES (COMPUTADOR) === */
+@media (min-width: 900px) {
+  .login-card {
+    max-width: 520px !important;
+    padding: 56px 52px !important;
+  }
+  .login-card .eyebrow { font-size: 1rem !important; }
+  .login-card h1 { font-size: 2.3rem !important; }
+  .login-sub { font-size: 1.1rem !important; margin-bottom: 30px; }
+  .login-card .campo span { font-size: 0.95rem !important; }
+  .login-card .campo input[type="email"],
+  .login-card .campo input[type="password"] {
+    padding: 14px 18px !important;
+    font-size: 1.05rem !important;
+  }
+  .login-card .btn-full {
+    padding: 15px 24px !important;
+    font-size: 1.05rem !important;
+  }
+}
+
 /* === HEADER DO PAINEL === */
 .admin-header {
   background: #1e1900 !important;
@@ -332,4 +353,5 @@ body.admin-body {
 
 <script type="module" src="admin.js"></script>
 </body>
-</html>
+  </html>
+  
