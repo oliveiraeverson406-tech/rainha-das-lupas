@@ -57,6 +57,16 @@ function padronizarImagem(url, tamanho = 800){
   );
 }
 
+/* =======================================================================
+   CONTROLE DE ESTOQUE
+   Produtos antigos (sem o campo "quantidade") continuam aparecendo normal.
+   Só esconde quando "quantidade" existir e for <= 0.
+======================================================================= */
+function temEstoque(produto){
+  if (produto.quantidade === undefined || produto.quantidade === null) return true;
+  return Number(produto.quantidade) > 0;
+}
+
 /* ===================== referências de elementos ===================== */
 const grid = document.getElementById("grid");
 const vazio = document.getElementById("vazio");
@@ -157,7 +167,8 @@ function aplicarFiltros(){
   const filtrados = produtos.filter(p => {
     const passaCategoria = categoriaAtual === "todos" || p.categoria === categoriaAtual;
     const passaBusca = (p.nome || "").toLowerCase().includes(buscaAtual.toLowerCase());
-    return passaCategoria && passaBusca;
+    const passaEstoque = temEstoque(p);
+    return passaCategoria && passaBusca && passaEstoque;
   });
   grid.innerHTML = filtrados.map(cardHTML).join("");
   vazio.classList.toggle("show", filtrados.length === 0);
@@ -192,7 +203,7 @@ let heroSlideTimer = null;
 function montarHeroSlideshow(){
   if (!heroSlideshow || !produtos.length) return;
 
-  const destaques = produtos.filter(p => p.imagens && p.imagens.length).slice(0, 6);
+  const destaques = produtos.filter(p => p.imagens && p.imagens.length && temEstoque(p)).slice(0, 6);
   if (!destaques.length) return;
 
   heroSlideshow.innerHTML = destaques.map((p, i) => `
@@ -448,3 +459,4 @@ grid.addEventListener("click", (e) => {
 
 /* ===================== inicialização ===================== */
 carregarProdutos();
+       
