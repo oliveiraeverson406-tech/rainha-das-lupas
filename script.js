@@ -135,6 +135,14 @@ async function carregarProdutos(){
 }
 
 /* ===================== renderização dos cards ===================== */
+const LIMITE_ESTOQUE_BAIXO = 3;
+
+function temEstoqueBaixo(produto){
+  if (produto.quantidade === undefined || produto.quantidade === null) return false;
+  const q = Number(produto.quantidade);
+  return q > 0 && q <= LIMITE_ESTOQUE_BAIXO;
+}
+
 function cardHTML(produto){
   const imagens = Array.isArray(produto.imagens) ? produto.imagens.filter(Boolean) : [];
   const arte = imagens.length
@@ -143,11 +151,14 @@ function cardHTML(produto){
   const badge = imagens.length > 1
     ? `<span class="badge-fotos">📷 ${imagens.length} fotos</span>`
     : "";
+  const badgeEstoque = temEstoqueBaixo(produto)
+    ? `<span class="badge-estoque" style="position:absolute;top:10px;left:10px;background:#B68D40;color:#0d0d0d;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;z-index:2;">Últimas unidades</span>`
+    : "";
   const msg = `Olá! Tenho interesse no produto "${produto.nome}" (${formatarPreco(produto.preco)}).`;
 
   return `
     <article class="card" data-id="${produto.id}">
-      <div class="card-art">${arte}${badge}</div>
+      <div class="card-art">${arte}${badge}${badgeEstoque}</div>
       <div class="card-body">
         <span class="card-cat" style="color:${corCategoria[produto.categoria]}">${nomesCategoria[produto.categoria] || produto.categoria}</span>
         <h3 class="card-nome">${produto.nome}</h3>
@@ -459,4 +470,3 @@ grid.addEventListener("click", (e) => {
 
 /* ===================== inicialização ===================== */
 carregarProdutos();
-       
