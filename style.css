@@ -350,7 +350,7 @@ footer { background: #0d0d0d; padding: 60px 0 32px; color: #FBF6EA; border-top: 
 @media (max-width: 640px) { .contato-grid { grid-template-columns: 1fr; } }
 footer h2 { color: #FBF6EA; font-family: 'Playfair Display', serif;margin: 6px 0 16px; }
 .contato-lista { display: flex; flex-direction: column; gap: 10px; }
-.contato-lista li { font-size: 1.15rem; color: #d4c9b0; font-family: 'Playfair Display', serif;}
+.contato-lista li { font-size: 1.15rem; color: #FFFFFF; font-family: 'Playfair Display', serif;}
 .contato-lista a { color: #FFB300;font-family: 'Playfair Display', serif; }
 
 .contato-lista a:hover { text-decoration: underline; }
