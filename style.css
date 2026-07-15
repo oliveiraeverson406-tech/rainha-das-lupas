@@ -340,7 +340,7 @@ header {
   background: linear-gradient(135deg, #000000 0%, #1a1200 100%);
 }
 .sobre h2 { color: #FBF6EA; margin: 8px 0 16px; }
-.sobre p { color: #d4c9b0; font-family: "Fraunces", serif;max-width: 560px; line-height: 1.7; }
+.sobre p { color: #d4c9b0; font-family: "Fraunces", serif; font-size: 1.5rem;max-width: 560px; line-height: 1.7; }
 
 /* =============================================
    FOOTER
