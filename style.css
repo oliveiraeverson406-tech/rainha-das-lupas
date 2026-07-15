@@ -251,7 +251,7 @@ header {
 }
 .search input {
   border: none; outline: none; background: transparent;
-  font-family: "Georgia", sans-serif; font-size: 0.9rem; color: #FBF6EA; width: 100%;
+  font-family: "Georgia", sans-serif; font-size: 1.7rem; color: #FBF6EA; width: 100%;
 }
 .search input::placeholder { color: #8a7a56; }
 .pills { display: flex; gap: 8px; flex-wrap: wrap; }
