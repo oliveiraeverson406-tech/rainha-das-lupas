@@ -407,7 +407,7 @@ footer h2 { color: #FBF6EA; font-family: 'Playfair Display', serif;margin: 6px 0
 .galeria-seta-dir { right: 10px; }
 .galeria-seta[hidden] { display: none; }
 .galeria-info { margin-bottom: 16px; }
-.galeria-info h3 { font-family: "Fraunces", serif; font-size: 1.2rem; margin: 6px 0 4px; color: #FBF6EA; }
+.galeria-info h3 { font-family: "Georgia", serif; font-size: 1.2rem; margin: 6px 0 4px; color: #FBF6EA; }
 .galeria-info p { font-size: 0.85rem; color: #FFFFFF; }
 .galeria-miniaturas { display: flex; gap: 8px; flex-wrap: wrap; }
 .galeria-miniaturas img {
