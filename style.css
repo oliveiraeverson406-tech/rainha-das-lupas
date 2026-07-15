@@ -120,7 +120,7 @@ header {
   letter-spacing: 0.08em;
 }
 .hero h1 { color: #FBF6EA; margin: 8px 0 16px; }
-.hero p { color: #FFFFFF; font-family: 'Fraunces', serif; font-size: 1.3rem; margin-bottom: 24px; max-width: 480px; }
+.hero p { color: #FFFFFF; font-family: 'Fraunces', serif; font-size: 1.6rem; margin-bottom: 24px; max-width: 480px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-fade { opacity: 0; transform: translateY(20px); animation: heroFade 0.7s ease forwards; }
 .hero-fade.delay { animation-delay: 0.2s; }
