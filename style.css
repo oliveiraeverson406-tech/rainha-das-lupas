@@ -113,14 +113,14 @@ header {
   .lens-stage { display: none; }
 }
 .hero .eyebrow {
-  color: #FFB300;
+  color: #FFFFFF;
   margin-top: 90px;
   font-family: Playfair Display', serif;
   font-size: 1rem;
   letter-spacing: 0.08em;
 }
 .hero h1 { color: #FBF6EA; margin: 8px 0 16px; }
-.hero p { color: #FFB300; font-family: 'Playfair Display', serif; margin-bottom: 24px; max-width: 480px; }
+.hero p { color: #FFFFFF; font-family: 'Playfair Display', serif; margin-bottom: 24px; max-width: 480px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-fade { opacity: 0; transform: translateY(20px); animation: heroFade 0.7s ease forwards; }
 .hero-fade.delay { animation-delay: 0.2s; }
