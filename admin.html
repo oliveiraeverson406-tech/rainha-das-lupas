@@ -343,6 +343,13 @@ body.admin-body {
 </div>
 
 <script type="module" src="admin.js"></script>
+<script>
+window.onerror = function(msg, url, line) {
+  document.body.innerHTML += `<div style="color:red;padding:10px;background:#000">ERRO: ${msg} (linha ${line})</div>`;
+};
+</script>
+</body>
+</html>
 </body>
   </html>
   
