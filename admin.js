@@ -71,7 +71,11 @@ loginForm.addEventListener("submit", async (e) => {
 });
 
 btnSair.addEventListener("click", () => signOut(auth));
-
+btnMostrarSenha.addEventListener("click", () => {
+  const mostrando = loginSenha.type === "text";
+  loginSenha.type = mostrando ? "password" : "text";
+  btnMostrarSenha.textContent = mostrando ? "👁️" : "🙈";
+});
 /* ===================== campos de imagem dinâmicos ===================== */
 function novaLinhaImagem(valor = ""){
   const linha = document.createElement("div");
