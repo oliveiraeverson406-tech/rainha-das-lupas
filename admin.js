@@ -18,6 +18,7 @@ const loginTela = document.getElementById("loginTela");
 const loginForm = document.getElementById("loginForm");
 const loginEmail = document.getElementById("loginEmail");
 const loginSenha = document.getElementById("loginSenha");
+const btnMostrarSenha = document.getElementById("btnMostrarSenha");
 const loginErro = document.getElementById("loginErro");
 
 const adminPainel = document.getElementById("adminPainel");
