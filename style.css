@@ -503,3 +503,26 @@ p {
   cursor: pointer;
   font-size: 1.1rem;
 }
+.hero-grid {
+  position: relative;
+}
+
+.hero-destaque {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 340px;
+  max-width: 60%;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  z-index: 5;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .hero-destaque {
+    width: 220px;
+    bottom: -20px;
+  }
+}
