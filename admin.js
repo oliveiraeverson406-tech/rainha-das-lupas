@@ -50,7 +50,7 @@ onAuthStateChanged(auth, (user) => {
   if (user){
     loginTela.hidden = true;
     adminPainel.hidden = false;
-    adminUsuario.textContent = user.email;
+    adminUsuario.textContent = "";
     carregarProdutos();
   } else {
     loginTela.hidden = false;
