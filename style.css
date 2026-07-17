@@ -515,7 +515,7 @@ p {
   background-image: url("https://res.cloudinary.com/df2r4q8jh/image/upload/v1784231490/fielperson-oakley-856120_wrlncd.jpg");
   background-size: cover;
   background-position: center;
-  opacity: 0.12;
+  opacity: 0.40;
   filter: blur(1px);
   z-index: 0;
   pointer-events: none;
