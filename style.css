@@ -508,16 +508,16 @@ p {
   overflow: hidden;
 }
 
-.hero::before {
+body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
   background-image: url("https://res.cloudinary.com/df2r4q8jh/image/upload/v1784231490/fielperson-oakley-856120_wrlncd.jpg");
   background-size: cover;
   background-position: center;
-  opacity: 0.40;
+  opacity: 0.10;
   filter: blur(1px);
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
