@@ -530,3 +530,7 @@ body::before {
   position: relative;
   z-index: 1;
 }
+#splash-texto span,
+.hero .eyebrow {
+  font-family: Georgia, 'Times New Roman', serif;
+}
