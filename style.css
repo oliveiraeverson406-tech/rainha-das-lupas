@@ -7,7 +7,12 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: "Work Sans", sans-serif;
-  background: #0d0d0d;
+  background: 
+    linear-gradient(rgba(13,13,13,0.9), rgba(13,13,13,0.9)),
+    url("https://res.cloudinary.com/df2r4q8jh/image/upload/v1784231490/fielperson-oakley-856120_wrlncd.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   color: #FFB300;
   line-height: 1.6;
 }
