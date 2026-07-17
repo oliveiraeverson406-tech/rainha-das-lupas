@@ -233,7 +233,7 @@ header {
 /* =============================================
    COLEÇÃO
 ============================================= */
-.colecao { padding: 70px 0; background: #0d0d0d; }
+footer { background: rgba(13,13,13,0.85); padding: 60px 0 32px; color: #FBF6EA; border-top: 1px solid #3a2f18; }
 .colecao-head {
   display: flex;
   align-items: flex-end;
@@ -350,7 +350,7 @@ header {
 /* =============================================
    FOOTER
 ============================================= */
-footer { background: #0d0d0d; padding: 60px 0 32px; color: #FBF6EA; border-top: 1px solid #3a2f18; }
+footer { background: rgba(13,13,13,0.85); padding: 60px 0 32px; color: #FBF6EA; border-top: 1px solid #3a2f18; }
 .contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
 @media (max-width: 640px) { .contato-grid { grid-template-columns: 1fr; } }
 footer h2 { color: #FBF6EA; font-family: 'Playfair Display', serif;margin: 6px 0 16px; }
