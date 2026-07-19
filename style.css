@@ -59,7 +59,7 @@ em { font-style: italic; }
 .btn-primary { background: #FFB300; color: #0d0d0d; border-color: #FFB300; }
 .btn-primary:hover { background: #FFB300; border-color: #FFB300; }
 .btn-ghost { background: transparent; color: #FFB300; border-color: #FFB300; }
-.btn-ghost:hover { background: #FFB300f; color: #0d0d0d; }
+.btn-ghost:hover { background: #FFB300; color: #0d0d0d; }
 
 /* =============================================
    HEADER
@@ -118,7 +118,7 @@ header {
 .hero .eyebrow {
   color: #FFFFFF;
   margin-top: 90px;
-  font-family: Playfair Display', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1rem;
   letter-spacing: 0.08em;
 }
