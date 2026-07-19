@@ -39,7 +39,7 @@ const db = getFirestore(app);
 /* =======================================================================
    EDITE AQUI — número de WhatsApp da loja
 ======================================================================= */
-const WHATSAPP_NUMERO = "5592985182434";
+const WHATSAPP_NUMERO = "";
 
 /* =======================================================================
    PADRONIZAÇÃO DE IMAGENS (Cloudinary)
