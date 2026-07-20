@@ -231,7 +231,6 @@ header {
 /* =============================================
    COLEÇÃO
 ============================================= */
-footer { background: rgba(13,13,13,0.85); padding: 60px 0 32px; color: #FBF6EA; border-top: 1px solid #3a2f18; }
 .colecao-head {
   display: flex;
   align-items: flex-end;
@@ -295,6 +294,8 @@ footer { background: rgba(13,13,13,0.85); padding: 60px 0 32px; color: #FBF6EA; 
   cursor: pointer;
 }
 .card:hover { box-shadow: 0 8px 32px rgba(255,179,0,0.15); transform: translateY(-3px); }
+.card-esgotado .card-art img { opacity: 0.55; }
+.card-esgotado:hover { transform: none; box-shadow: none; }
 .card-art {
   position: relative;
   aspect-ratio: 4/3;
