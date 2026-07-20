@@ -11,6 +11,9 @@
    3. Dê um apelido (ex: "rainha-das-lupas-site") e clique em "Registrar app"
    4. O Firebase vai mostrar um bloco "firebaseConfig" — copie os valores
       e cole abaixo, substituindo o que está escrito como exemplo.
+
+   Este arquivo é usado tanto pelo site público (script.js) quanto pelo
+   painel admin (admin.js) — edite aqui uma única vez.
 ======================================================================= */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
