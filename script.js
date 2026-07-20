@@ -1,25 +1,3 @@
-/* =======================================================
-   MODO DEBUG TEMPORÁRIO — mostra qualquer erro na tela
-   (remover este bloco depois que o bug for resolvido)
-======================================================= */
-(function(){
-  const banner = document.createElement("div");
-  banner.id = "debug-banner";
-  banner.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:99999;background:#ff3333;color:#fff;padding:14px;font-family:monospace;font-size:13px;white-space:pre-wrap;display:none;";
-  document.addEventListener("DOMContentLoaded", () => document.body.appendChild(banner));
-  function mostrarErro(msg){
-    if (!document.body.contains(banner)) document.body.appendChild(banner);
-    banner.style.display = "block";
-    banner.textContent = "ERRO CAPTURADO:\n" + msg;
-  }
-  window.addEventListener("error", (e) => {
-    mostrarErro((e.message || "erro desconhecido") + "\nArquivo: " + (e.filename || "?") + "\nLinha: " + (e.lineno || "?"));
-  });
-  window.addEventListener("unhandledrejection", (e) => {
-    mostrarErro("Promise rejeitada: " + (e.reason && e.reason.message ? e.reason.message : e.reason));
-  });
-})();
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
@@ -38,6 +16,8 @@ const db = getFirestore(app);
 
 /* =======================================================================
    EDITE AQUI — número de WhatsApp da loja
+   Formato: DDI (55) + DDD + número, tudo junto, sem espaço/traço/parênteses
+   Exemplo: 5592912345678
 ======================================================================= */
 const WHATSAPP_NUMERO = "";
 
@@ -60,11 +40,17 @@ function padronizarImagem(url, tamanho = 800){
 /* =======================================================================
    CONTROLE DE ESTOQUE
    Produtos antigos (sem o campo "quantidade") continuam aparecendo normal.
-   Só esconde quando "quantidade" existir e for <= 0.
+   Quantidade 0 não esconde mais o produto — ele continua no catálogo
+   com o selo "Esgotado" (ver temEsgotado / badgeEstoque em cardHTML).
 ======================================================================= */
 function temEstoque(produto){
   if (produto.quantidade === undefined || produto.quantidade === null) return true;
   return Number(produto.quantidade) > 0;
+}
+
+function temEsgotado(produto){
+  if (produto.quantidade === undefined || produto.quantidade === null) return false;
+  return Number(produto.quantidade) <= 0;
 }
 
 /* ===================== referências de elementos ===================== */
@@ -151,13 +137,19 @@ function cardHTML(produto){
   const badge = imagens.length > 1
     ? `<span class="badge-fotos">📷 ${imagens.length} fotos</span>`
     : "";
-  const badgeEstoque = temEstoqueBaixo(produto)
-    ? `<span class="badge-estoque" style="position:absolute;top:10px;left:10px;background:#0d0d0d;color:#FFFFFF;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;z-index:2;">Últimas unidades</span>`
-    : "";
+  const esgotado = temEsgotado(produto);
+  const badgeEstoque = esgotado
+    ? `<span class="badge-estoque" style="position:absolute;top:10px;left:10px;background:#e05a4a;color:#FFFFFF;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;z-index:2;">Esgotado</span>`
+    : temEstoqueBaixo(produto)
+      ? `<span class="badge-estoque" style="position:absolute;top:10px;left:10px;background:#0d0d0d;color:#FFFFFF;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;z-index:2;">Últimas unidades</span>`
+      : "";
   const msg = `Olá! Tenho interesse no produto "${produto.nome}" (${formatarPreco(produto.preco)}).`;
+  const botaoZap = esgotado
+    ? `<span class="card-zap" style="opacity:0.5;pointer-events:none;">Esgotado</span>`
+    : `<a class="card-zap" href="${linkWhatsApp(msg)}" target="_blank" rel="noopener">Perguntar</a>`;
 
   return `
-    <article class="card" data-id="${produto.id}">
+    <article class="card${esgotado ? " card-esgotado" : ""}" data-id="${produto.id}">
       <div class="card-art">${arte}${badge}${badgeEstoque}</div>
       <div class="card-body">
         <span class="card-cat" style="color:${corCategoria[produto.categoria]}">${nomesCategoria[produto.categoria] || produto.categoria}</span>
@@ -165,7 +157,7 @@ function cardHTML(produto){
         <p class="card-desc">${produto.descricao || ""}</p>
         <div class="card-bottom">
           <span class="card-preco">${formatarPreco(produto.preco)}</span>
-          <a class="card-zap" href="${linkWhatsApp(msg)}" target="_blank" rel="noopener">Perguntar</a>
+          ${botaoZap}
         </div>
       </div>
     </article>`;
@@ -178,8 +170,7 @@ function aplicarFiltros(){
   const filtrados = produtos.filter(p => {
     const passaCategoria = categoriaAtual === "todos" || p.categoria === categoriaAtual;
     const passaBusca = (p.nome || "").toLowerCase().includes(buscaAtual.toLowerCase());
-    const passaEstoque = temEstoque(p);
-    return passaCategoria && passaBusca && passaEstoque;
+    return passaCategoria && passaBusca;
   });
   grid.innerHTML = filtrados.map(cardHTML).join("");
   vazio.classList.toggle("show", filtrados.length === 0);
@@ -470,4 +461,3 @@ grid.addEventListener("click", (e) => {
 
 /* ===================== inicialização ===================== */
 carregarProdutos();
-     
