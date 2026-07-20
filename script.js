@@ -1,18 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-
-/* ===================== Firebase inline ===================== */
-const firebaseConfig = {
-  apiKey: "AIzaSyDY6_Dt7QMK6Qssf6Di0HLtfi3NfqnGM9k",
-  authDomain: "rainha-das-lupas.firebaseapp.com",
-  projectId: "rainha-das-lupas",
-  storageBucket: "rainha-das-lupas.firebasestorage.app",
-  messagingSenderId: "1066816437022",
-  appId: "1:1066816437022:web:bbda2340018a9ff208670f"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { db } from "./firebase-config.js";
 
 /* =======================================================================
    EDITE AQUI — número de WhatsApp da loja
