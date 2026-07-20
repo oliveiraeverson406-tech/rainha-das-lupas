@@ -3,169 +3,410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rainha das Lupas | Ótica</title>
-<meta name="description" content="Óculos de sol, óculos de grau, lupas de aumento e acessórios. Enxergue como uma rainha.">
+<title>Painel Admin | Rainha das Lupas</title>
+<meta name="robots" content="noindex, nofollow">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-
-
- 
 <link rel="stylesheet" href="style.css">
-</head>
-<body>
-   <script type="module" src="script.js"></script>
+<link rel="stylesheet" href="admin.css">
 
-<!-- SPLASH -->
-<div id="splash">
-  <div class="splash-stage">
-    <img id="splash-oculos"
-      src="https://res.cloudinary.com/df2r4q8jh/image/upload/e_background_removal/v1782345953/1782345513509_lixq1e.png"
-      alt="Óculos">
-    <img id="splash-coroa"
-      src="https://res.cloudinary.com/df2r4q8jh/image/upload/e_background_removal/v1782345990/1782345870178_cyewqk.png"
-      alt="Coroa">
+<style>
+/* === FUNDO GERAL === */
+body.admin-body {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  color: #f5e6c0 !important;
+  font-family: 'Work Sans', sans-serif !important;
+}
+
+/* === TÍTULOS EM FRAUNCES === */
+.login-card h1,
+.admin-form-card h2,
+.admin-lista-card h2,
+.brand {
+  font-family: 'Fraunces', serif !important;
+}
+
+/* === EYEBROW / RÓTULOS EM SPACE MONO === */
+.eyebrow,
+.campo span,
+.admin-usuario,
+.admin-contador {
+  font-family: 'Playfair Display', serif !important;
+}
+
+/* === LOGIN === */
+.login-tela {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  .login-tela[hidden] {
+  display: none !important;
+  }
+}
+.login-card {
+  background: #1e1900 !important;
+  border: 1px solid #3a3000 !important;
+  border-radius: 18px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.7) !important;
+  padding: 36px 32px;
+  max-width: 440px;
+  width: 100%;
+}
+.login-card .eyebrow { color: #B68D40 !important; font-size: 0.82rem !important; }
+.login-card h1 { color: #FFB300 !important; font-size: 1.7rem !important; margin: 6px 0 10px; }
+.login-sub { color: #f5e6c0 !important; font-size: 1rem !important; margin: 0 0 22px; text-align: justify; font-family: 'Georgia',serif !important; }
+.login-card .campo span { color: #f5e6c0 !important; opacity: 1 !important; font-size: 0.85rem !important; }
+.login-card .campo input[type="email"],
+.login-card .campo input[type="password"] {
+  background: #2a2200 !important; color: #f5e6c0 !important;
+  border: 1.5px solid #3a3000 !important; border-radius: 10px; padding: 11px 14px;
+  font-family: 'Work Sans', sans-serif !important;
+}
+.login-card .campo input:focus { border-color: #B68D40 !important; outline: none; }
+.login-card .btn-primary {
+  background:#FFB300 !important; color:#000000!important;
+  font-weight: 700 !important; border: none !important; border-radius: 999px; width: 100%;
+  font-family: 'Work Sans', sans-serif !important;
+}
+.login-card .btn-primary:hover { background: #d4a848 !important; }
+.login-erro { color: #ffbb55 !important; font-family: 'Work Sans', sans-serif !important; }
+
+/* === LOGIN EM TELAS GRANDES (COMPUTADOR) === */
+@media (min-width: 900px) {
+  .login-card {
+    max-width: 620px !important;
+    padding: 56px 52px !important;
+  }
+  .login-card .eyebrow { font-size: 1.05rem !important; }
+  .login-card h1 { font-size: 2.7rem !important; }
+  .login-sub { font-size: 1.1rem !important; margin-bottom: 30px; }
+  .login-card .campo span { font-size: 0.95rem !important; }
+  .login-card .campo input[type="email"],
+  .login-card .campo input[type="password"] {
+    padding: 14px 18px !important;
+    font-size: 1.05rem !important;
+  }
+  .login-card .btn-full {
+    padding: 15px 24px !important;
+    font-size: 1.05rem !important;
+  }
+}
+
+/* === HEADER DO PAINEL === */
+.admin-header {
+  background: #1e1900 !important;
+  border-bottom: 1px solid #3a3000 !important;
+  position: sticky; top: 0; z-index: 20;
+}
+.admin-header-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; padding: 16px 24px;
+}
+.brand {
+  display: flex !important; align-items: center !important;
+  gap: 10px; font-size: 0.9rem;
+  color: #f5e6c0 !important; text-decoration: none;
+}
+.brand-mark { width: 28px !important; height: 28px !important; flex-shrink: 0; }
+.admin-usuario { color: #f5e6c0 !important; font-size: .78rem; }
+.admin-header-acoes { display: flex; align-items: center; gap: 14px; }
+
+/* === BOTÕES === */
+.btn-ghost {
+  background: transparent !important;
+  border: 1.5px solid #B68D40 !important;
+  color: #f5e6c0 !important;
+  border-radius: 999px; padding: 7px 16px;
+  font-size: .85rem; font-weight: 600;
+  font-family: 'Work Sans', sans-serif !important;
+}
+.btn-ghost:hover { background: #2a2200 !important; }
+.btn-primary {
+  background:#FFB300!important; color: #0d0d00 !important;
+  font-weight: 700 !important; border: none !important;
+  border-radius: 999px; padding: 11px 24px; cursor: pointer;
+  font-family: 'Work Sans', sans-serif !important;
+}
+.btn-primary:hover { background: #d4a848 !important; }
+.btn-full { width: 100% !important; justify-content: center; }
+.btn-pequeno { padding: 7px 14px !important; font-size: .82rem !important; }
+
+/* === ÁREA PRINCIPAL === */
+.admin-main { padding: 36px 24px 70px; display: flex; flex-direction: column; gap: 32px; }
+
+/* === CARDS === */
+.admin-form-card, .admin-lista-card {
+  background: #1e1900 !important;
+  border: 1px solid #3a3000 !important;
+  border-radius: 16px; padding: 26px 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
+}
+.admin-form-card h2, .admin-lista-card h2 {
+  color: #FFB300 !important; font-size: 1.4rem; margin: 4px 0 18px;
+}
+.eyebrow { color: #f5e6c0 !important; font-size: 0.85rem !important; letter-spacing: 0.1em; }
+
+/* === CAMPOS === */
+.campo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.campo span { color: #f5e6c0 !important; opacity: 1 !important; font-size: .85rem !important; text-transform: uppercase; letter-spacing: .05em; }
+.campo input[type="text"],
+.campo input[type="number"],
+.campo input[type="url"],
+.campo select,
+.campo textarea {
+  background: #2a2200 !important; color: #f5e6c0 !important;
+  border: 1.5px solid #3a3000 !important; border-radius: 10px;
+  padding: 11px 14px; font-size: .95rem; outline: none;
+  font-family: 'Work Sans', sans-serif !important;
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: #B68D40 !important; }
+.campo textarea { resize: vertical; }
+.campo-ajuda { font-size: .85rem !important; color: #cccccc !important; margin: -2px 0 8px; font-family: 'Work Sans', sans-serif !important; }
+.campo-checkbox { display: flex; align-items: center; gap: 10px; margin: 4px 0 22px; color: #f5e6c0 !important; }
+.campo-checkbox span { color: #f5e6c0 !important; text-transform: none !important; font-size: .95rem !important; font-family: 'Work Sans', sans-serif !important; }
+.campo-checkbox input { width: 18px; height: 18px; accent-color: #FFB300; }
+
+/* === FORM === */
+.form-linha { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .form-linha { grid-template-columns: 1fr; } }
+.form-linha-estoque { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .form-linha-estoque { grid-template-columns: 1fr; } }
+.form-acoes { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
+.form-msg { font-size: .85rem; margin: 12px 0 0; min-height: 1.2em; font-family: 'Work Sans', sans-serif !important; }
+.form-msg.sucesso { color: #6fcf7a !important; }
+.form-msg.erro { color: #ff6b6b !important; }
+
+/* === IMAGENS === */
+.lista-imagens { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.linha-imagem { display: flex; gap: 8px; align-items: center; }
+.linha-imagem input { flex: 1; }
+.linha-imagem .btn-remover-img {
+  border: none !important; background: transparent !important;
+  color: #B68D40 !important; font-size: 1.2rem;
+  width: 32px; height: 32px; border-radius: 50%;
+}
+.linha-imagem img.preview {
+  width: 38px; height: 38px; object-fit: cover;
+  border-radius: 8px; border: 1px solid #3a3000 !important;
+}
+
+/* === LISTA DE PRODUTOS === */
+.admin-lista-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.admin-contador { color: #f5e6c0 !important; font-size: .78rem; }
+.lista-produtos { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.item-produto {
+  display: flex; align-items: center; gap: 14px;
+  border: 1px solid #3a3000 !important; border-radius: 12px;
+  padding: 10px 14px; background: #2a2200 !important;
+}
+.item-produto .thumb {
+  width: 52px; height: 52px; border-radius: 9px;
+  object-fit: cover; background: #1e1900 !important;
+  border: 1px solid #3a3000 !important;
+}
+.item-info .nome { color: #f5e6c0 !important; font-weight: 600; font-size: .95rem; font-family: 'Fraunces', serif !important; }
+.item-info .meta { color: #cccccc !important; font-size: .74rem; display: flex; gap: 10px; flex-wrap: wrap; font-family: 'Playfair Display', serif !important; }
+.item-info .meta .inativo { color: #ff6b6b !important; }
+.item-info .meta .esgotado { color: #ff6b6b !important; }
+.item-acoes { display: flex; gap: 8px; }
+.item-acoes button {
+  border: 1.5px solid #B68D40 !important; background: transparent !important;
+  color: #B68D40 !important; border-radius: 999px; padding: 6px 13px; font-size: .78rem; font-weight: 600;
+  font-family: 'Work Sans', sans-serif !important;
+}
+.item-acoes button:hover { background: #B68D40 !important; color: #0d0d00 !important; }
+.item-acoes .btn-excluir { border-color: #ff6b6b !important; color: #ff6b6b !important; }
+.item-acoes .btn-excluir:hover { background: #ff6b6b !important; color: #0d0d00 !important; }
+.status-msg { color: #cccccc !important; font-family: 'Work Sans', sans-serif !important; }
+
+/* === ANIMAÇÕES === */
+.campo-email { opacity: 0; transform: translateX(-80px); animation: entraDaEsquerda 0.6s cubic-bezier(.22,1,.36,1) 0.2s forwards; }
+.campo-senha { opacity: 0; transform: translateX(80px); animation: entraDaDireita 0.6s cubic-bezier(.22,1,.36,1) 0.45s forwards; }
+.login-card .btn-full { opacity: 0; transform: translateY(40px); animation: entraDeBaixo 0.6s cubic-bezier(.22,1,.36,1) 0.7s forwards; }
+@keyframes entraDaEsquerda { to { opacity: 1; transform: translateX(0); } }
+@keyframes entraDaDireita { to { opacity: 1; transform: translateX(0); } }
+@keyframes entraDeBaixo { to { opacity: 1; transform: translateY(0); } }
+@media (min-width: 900px) {
+  .admin-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+    gap: 48px;
+  }
+  .admin-form-card, .admin-lista-card {
+    padding: 50px 56px;
+  }
+  .admin-form-card h2, .admin-lista-card h2 {
+    font-size: 2.3rem;
+  }
+  .eyebrow {
+    font-size: 1.05rem !important;
+  }
+  .campo span {
+    font-size: 1.1rem !important;
+  }
+  .campo input[type="text"],
+  .campo input[type="number"],
+  .campo input[type="url"],
+  .campo select,
+  .campo textarea {
+    padding: 16px 20px;
+    font-size: 1.2rem;
+  }
+  .campo-ajuda {
+    font-size: 1rem !important;
+  }
+  .campo-checkbox span {
+    font-size: 1.1rem !important;
+  }
+  .btn-primary, .btn-ghost {
+    font-size: 1.1rem;
+    padding: 16px 34px;
+  }
+  .btn-pequeno {
+    font-size: 1rem !important;
+    padding: 12px 22px !important;
+  }
+  .item-produto {
+    padding: 18px 24px;
+  }
+  .item-produto .thumb {
+    width: 76px;
+    height: 76px;
+  }
+  .item-info .nome {
+    font-size: 1.25rem;
+  }
+  .item-info .meta {
+    font-size: 0.9rem;
+  }
+  .item-acoes button {
+    font-size: 0.95rem !important;
+    padding: 9px 18px !important;
+  }
+  .admin-contador {
+    font-size: 0.95rem;
+  }
+}
+</style>
+</head>
+<body class="admin-body">
+
+<!-- ===================== TELA DE LOGIN ===================== -->
+<div class="login-tela" id="loginTela">
+  <form class="login-card" id="loginForm">
+    <p class="eyebrow" style="text-align:center; color:#FFFFFF !important; font-family:'Georgia', serif !important;">Painel administrativo</p>
+    <h1 style=" text-align: center;">Rainha das Lupas</h1>
+    <p class="login-sub">Entre com o e-mail e senha cadastrados para gerenciar os produtos do site.</p>
+
+    <label class="campo campo-email">
+      <span>E-mail</span>
+      <input type="email" id="loginEmail" required autocomplete="username">
+    </label>
+    <label class="campo campo-senha">
+  <span>Senha</span>
+  <div class="campo-senha-wrapper">
+    <input type="password" id="loginSenha" required autocomplete="current-password">
+    <button type="button" id="btnMostrarSenha" class="btn-olho" aria-label="Mostrar senha">👁️</button>
   </div>
-  <div id="splash-texto">
-    Rainha das Lupas
-    <span>Ótica · óculos e lupas de aumento</span>
-  </div>
+    </label>
+
+    <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+    <p class="login-erro" id="loginErro"></p>
+  </form>
 </div>
 
-<script>
-  setTimeout(function() {
-    document.getElementById('splash').classList.add('sumir');
-    setTimeout(function() { document.getElementById('splash').remove(); }, 800);
-  }, 3200);
-</script>
+<!-- ===================== PAINEL (após login) ===================== -->
+<div class="admin-painel" id="adminPainel" hidden>
 
-<header>
-  <div class="header-inner">
-    <a href="#topo" class="brand">Rainha das Lupas</a>
-    <ul class="nav-links">
-      <li><a href="#colecao">Coleção</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#contato">Contato</a></li>
-    </ul>
-    <a class="btn btn-primary" id="zap-header" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
-  </div>
+<header class="admin-header">
+    <div class="wrap admin-header-inner" style="flex-direction: column; align-items: center; gap: 6px; padding: 12px 0;">
+      
+      <button class="btn btn-ghost" id="btnSair">Sair</button>
+    </div>
 </header>
 
-<main id="topo">
+  <main class="wrap admin-main">
 
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="hero-logo-wrap hero-fade">
-          <img src="https://res.cloudinary.com/df2r4q8jh/image/upload/v1783042508/logo-oculos-coroa_ndbfxk.png" alt="Rainha das Lupas">
-        </div>
-        <span class="hero-logo-texto hero-fade">RAINHA<br>DAS LUPAS</span>
-        <p class="eyebrow hero-fade">Ótica · óculos e lupas de aumento</p>
-        <h1 class="hero-fade delay">Enxergue como uma <em>rainha</em>.</h1>
-        <p class="hero-fade delay">Óculos de sol, óculos de grau, lupas de aumento e acessórios — selecionados com o mesmo cuidado de um joalheiro escolhendo pedras.</p>
-        <div class="hero-actions hero-fade delay">
-          <a href="#colecao" class="btn btn-primary">Ver coleção</a>
-          <a href="#contato" class="btn btn-ghost">Tirar dúvidas</a>
-        </div>
-      </div>
-      <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true">
-       
-      </div>
-    </div>
-  </section>
+    <!-- ===================== FORMULÁRIO ===================== -->
+    <section class="admin-form-card">
+      <p class="eyebrow" id="formModo">Novo produto</p>
+      <h2>Cadastrar / editar produto</h2>
 
-  <section class="colecao" id="colecao">
-    <div class="wrap">
-      <div class="colecao-head">
-        <div>
-          <p class="eyebrow">Catálogo</p>
-          <h2>Nossa coleção</h2>
+      <form id="produtoForm">
+        <div class="form-linha">
+          <label class="campo">
+            <span>Nome do produto</span>
+            <input type="text" id="campoNome" required placeholder="Ex: Aviador Imperial">
+          </label>
+          <label class="campo campo-curto">
+            <span>Categoria</span>
+            <select id="campoCategoria" required>
+              <option value="sol">Óculos de Sol</option>
+              <option value="grau">Óculos de Grau</option>
+              <option value="lupa">Lupa de Aumento</option>
+              <option value="acessorio">Acessório</option>
+            </select>
+          </label>
+          <label class="campo campo-curto">
+            <span>Preço (R$)</span>
+            <input type="number" id="campoPreco" step="0.01" min="0" required placeholder="189.90">
+          </label>
         </div>
-      </div>
-      <div class="controls">
-        <div class="search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" stroke="#FFB300" stroke-width="2"/>
-            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#FFB300" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <input type="text" id="busca" placeholder="Buscar produto..." aria-label="Buscar produto">
-        </div>
-        <div class="pills" id="pills" role="group" aria-label="Filtrar por categoria">
-          <button class="pill active" data-cat="todos">Todos</button>
-          <button class="pill" data-cat="sol">Óculos de Sol</button>
-          <button class="pill" data-cat="grau">Óculos de Grau</button>
-          <button class="pill" data-cat="lupa">Lupas de Aumento</button>
-          <button class="pill" data-cat="acessorio">Acessórios</button>
-        </div>
-      </div>
-      <p class="status-msg" id="statusMsg">Carregando coleção...</p>
-      <div class="grid" id="grid"></div>
-      <p class="vazio" id="vazio">Nenhum produto encontrado. Tente outra busca ou categoria.</p>
-    </div>
-  </section>
 
-  <section class="sobre" id="sobre">
-    <div class="wrap">
-      <p class="eyebrow" style="color:#FFB300">Nossa história</p>
-      <h2>Tradição de quem entende de lentes.</h2>
-      <p>A Rainha das Lupas nasceu para quem não abre mão de enxergar — e de enxergar bem — com elegância. Cada peça da coleção é escolhida pensando em conforto no dia a dia e em durar muitos anos ao seu lado.</p>
-    </div>
-  </section>
+        <label class="campo">
+          <span>Descrição curta</span>
+          <textarea id="campoDescricao" rows="2" placeholder="Frase curta que aparece no card do produto"></textarea>
+        </label>
 
-  <footer id="contato">
-    <div class="wrap">
-      <div class="contato-grid">
-        <div>
-          <p class="eyebrow">Fale com a gente</p>
-          <h2>Contato</h2>
-          <ul class="contato-lista">
-            <li>📍 Barreirinha, AM</li>
-            <!-- EDITE AQUI — texto do telefone exibido (o link do WhatsApp é preenchido automaticamente pelo script.js) -->
-            <li>📞 <a href="#" id="zap-footer-tel">(92) 9XXXX-XXXX</a></li>
-            <li>✉️ contato@rainhadaslupas.com.br</li>
-            <!-- EDITE AQUI — link do Instagram da loja (troque o href="#" pelo link real do perfil) -->
-            <li>📷 <a href="#">@rainhadaslupas</a></li>
-          </ul>
+        <div class="form-linha-estoque">
+          <label class="campo">
+            <span>Quantidade em estoque</span>
+            <input type="number" id="campoQuantidade" step="1" min="0" placeholder="Ex: 5">
+          </label>
         </div>
-        <div>
-          <p class="eyebrow">Atendimento rápido</p>
-          <h2 style="font-size:1.3rem; margin-bottom:14px;">Prefere o WhatsApp?</h2>
-          <a class="btn btn-primary" id="zap-footer" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
-        </div>
-      </div>
-      <div class="copy">
-        <span>© 2026 Rainha das Lupas</span>
-        <span>Site fase 2 — catálogo dinâmico (Firebase)</span>
-      </div>
-    </div>
-  </footer>
-  <a href="#" id="zap-flutuante" class="float-zap" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
-      <path d="M12 2C6.5 2 2 6.4 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.6 21.6 10.3 22 12 22c5.5 0 10-4.4 10-10S17.5 2 12 2z" fill="#fff"/>
-    </svg>
-  </a>
+        <p class="campo-ajuda">Quando a quantidade chegar a 0, o produto some automaticamente do site (mesmo estando marcado como "ativo"). Deixe em branco se não quiser controlar estoque desse produto.</p>
 
-  <!-- MODAL DA GALERIA -->
-  <div class="galeria-overlay" id="galeriaOverlay">
-    <div class="galeria-box">
-      <button class="galeria-fechar" id="galeriaFechar" aria-label="Fechar">✕</button>
-      <div class="galeria-principal">
-        <img id="galeriaImgPrincipal" alt="">
-        <button class="galeria-seta galeria-seta-esq" id="setaEsq" aria-label="Anterior">‹</button>
-        <button class="galeria-seta galeria-seta-dir" id="setaDir" aria-label="Próxima">›</button>
+        <div class="campo">
+          <span>Fotos do produto (link de cada imagem, um ângulo por foto)</span>
+          <p class="campo-ajuda">A primeira foto vira a capa do card. Cole o link direto da imagem (ex: hospedada no ImgBB, Cloudinary, Google Drive público, etc).</p>
+          <div id="listaImagens" class="lista-imagens"></div>
+          <button type="button" class="btn btn-ghost btn-pequeno" id="btnAddImagem">+ Adicionar foto</button>
+        </div>
+
+        <label class="campo-checkbox">
+          <input type="checkbox" id="campoAtivo" checked>
+          <span>Mostrar este produto no site</span>
+        </label>
+
+        <div class="form-acoes">
+          <button type="submit" class="btn btn-primary" id="btnSalvar">Salvar produto</button>
+          <button type="button" class="btn btn-ghost" id="btnCancelarEdicao" hidden>Cancelar edição</button>
+        </div>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </section>
+
+    <!-- ===================== LISTA DE PRODUTOS ===================== -->
+    <section class="admin-lista-card">
+      <div class="admin-lista-head">
+        <h2>Produtos cadastrados</h2>
+        <span class="admin-contador" id="contadorProdutos"></span>
       </div>
-      <div class="galeria-info">
-        <span class="card-cat" id="galeriaCat"></span>
-        <h3 id="galeriaNome"></h3>
-        <p id="galeriaDesc"></p>
-        <p class="card-preco" id="galeriaPreco" style="margin-top:8px;"></p>
-      </div>
-      <div class="galeria-miniaturas" id="galeriaMiniaturas"></div>
-    </div>
-  </div>
-  
-</main>
+      <p class="status-msg show" id="listaStatus">Carregando produtos...</p>
+      <div class="lista-produtos" id="listaProdutos"></div>
+    </section>
+
+  </main>
+</div>
+
+<script type="module" src="admin.js"></script>
 </body>
 </html>
