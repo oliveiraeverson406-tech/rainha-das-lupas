@@ -1,6 +1,6 @@
 import { auth, db } from "./firebase-config.js";
 import {
-  onAuthStateChanged, signInWithEmailAndPassword, signOut
+  onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import {
   collection, doc, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy
@@ -45,6 +45,7 @@ const contadorProdutos = document.getElementById("contadorProdutos");
 
 let editandoId = null;
 let produtosCache = [];
+let modoCadastro = false;
 
 /* ===================== autenticação ===================== */
 onAuthStateChanged(auth, (user) => {
@@ -63,12 +64,33 @@ loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   loginErro.textContent = "";
   try{
-    await signInWithEmailAndPassword(auth, loginEmail.value.trim(), loginSenha.value);
+    if (modoCadastro){
+      await createUserWithEmailAndPassword(auth, loginEmail.value.trim(), loginSenha.value);
+    } else {
+      await signInWithEmailAndPassword(auth, loginEmail.value.trim(), loginSenha.value);
+    }
   }catch(erro){
     console.error(erro);
-    loginErro.textContent = "E-mail ou senha incorretos.";
+    if (erro.code === "auth/email-already-in-use"){
+      loginErro.textContent = "Este e-mail já tem uma conta. Tente entrar.";
+    } else if (erro.code === "auth/weak-password"){
+      loginErro.textContent = "A senha precisa ter pelo menos 6 caracteres.";
+    } else {
+      loginErro.textContent = modoCadastro ? "Não foi possível criar a conta." : "E-mail ou senha incorretos.";
+    }
   }
 });
+
+const btnAlternarCadastro = document.getElementById("btnAlternarCadastro");
+if (btnAlternarCadastro){
+  btnAlternarCadastro.addEventListener("click", () => {
+    modoCadastro = !modoCadastro;
+    loginErro.textContent = "";
+    document.getElementById("loginTitulo").textContent = modoCadastro ? "Criar minha conta" : "Entrar";
+    loginForm.querySelector("button[type=submit]").textContent = modoCadastro ? "Criar conta" : "Entrar";
+    btnAlternarCadastro.textContent = modoCadastro ? "Já tenho conta, quero entrar" : "Primeiro acesso? Criar minha conta";
+  });
+}
 
 btnSair.addEventListener("click", () => signOut(auth));
 btnMostrarSenha.addEventListener("click", () => {
